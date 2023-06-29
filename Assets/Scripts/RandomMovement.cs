@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI; //important
 
-//if you use this code you are contractually obligated to like the YT video
+// ref - https://github.com/JonDevTutorial/RandomNavMeshMovement/blob/main/RandomMovement.cs
 public class RandomMovement : MonoBehaviour //don't forget to change the script name if you haven't
 {
     public NavMeshAgent robot;
     public float range; //radius of sphere
 
-    public Transform centrePoint; //centre of the area the agent wants to move around in
-    //instead of centrePoint you can set it as the transform of the agent if you don't care about a specific area
+    public Transform centrePoint; //centre of board
 
     void Start()
     {
