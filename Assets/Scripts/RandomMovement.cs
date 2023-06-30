@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; //important
+using UnityEngine.AI; 
 
 // ref - https://github.com/JonDevTutorial/RandomNavMeshMovement/blob/main/RandomMovement.cs
-public class RandomMovement : MonoBehaviour //don't forget to change the script name if you haven't
+public class RandomMovement : MonoBehaviour 
 {
     public NavMeshAgent robot;
     public float range; //radius of sphere
