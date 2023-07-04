@@ -26,6 +26,7 @@ public class RandomMovement : MonoBehaviour
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
                 robot.SetDestination(point);
+                Debug.Log("Robot is moving to destination: " + point);
             }
         }
 
