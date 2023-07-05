@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.2
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 0.2
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
-    minRegionArea: 2
+    minRegionArea: 1
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.06666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -178,10 +178,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: pickUp
       objectReference: {fileID: 0}
-    - target: {fileID: 8796450703170118176, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
 --- !u!4 &119209986 stripped
@@ -199,6 +195,10 @@ PrefabInstance:
     - target: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
       propertyPath: m_Name
       value: robotSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
       propertyPath: m_RootOrder
@@ -921,6 +921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CopperTubeSmall_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1366284955573086, guid: 7420379d7f2c12743b2f6e1be4acde56, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4584133391796048, guid: 7420379d7f2c12743b2f6e1be4acde56, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1319,6 +1323,10 @@ PrefabInstance:
     - target: {fileID: 1941677544680202, guid: 8f373aca9f61d594399a46d595ffff05, type: 3}
       propertyPath: m_Name
       value: DiningChair_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941677544680202, guid: 8f373aca9f61d594399a46d595ffff05, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4477643933458686, guid: 8f373aca9f61d594399a46d595ffff05, type: 3}
       propertyPath: m_RootOrder
@@ -1937,7 +1945,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.15
+  m_Height: 0.1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1955,7 +1963,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robot: {fileID: 1559105604}
   range: 6.5
-  centrePoint: {fileID: 1036117287}
 --- !u!4 &1689325082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6637057237017734883, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
@@ -1976,6 +1983,10 @@ PrefabInstance:
     - target: {fileID: 1672811663498856, guid: 712b67e724ce1324cbd78e42db960c9a, type: 3}
       propertyPath: m_Name
       value: Apple_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672811663498856, guid: 712b67e724ce1324cbd78e42db960c9a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4339521587888510, guid: 712b67e724ce1324cbd78e42db960c9a, type: 3}
       propertyPath: m_RootOrder
@@ -2137,9 +2148,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1258431487}
     m_Modifications:
+    - target: {fileID: 1190815669323852, guid: 7f31239f03456a046a1b910310494a7b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471337825202276, guid: 7f31239f03456a046a1b910310494a7b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937295727225158, guid: 7f31239f03456a046a1b910310494a7b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1997116700032260, guid: 7f31239f03456a046a1b910310494a7b, type: 3}
       propertyPath: m_Name
       value: DiningTable_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997116700032260, guid: 7f31239f03456a046a1b910310494a7b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4759610969336920, guid: 7f31239f03456a046a1b910310494a7b, type: 3}
       propertyPath: m_RootOrder
@@ -2358,6 +2385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiningChair_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1941677544680202, guid: 8f373aca9f61d594399a46d595ffff05, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4477643933458686, guid: 8f373aca9f61d594399a46d595ffff05, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2426,6 +2457,10 @@ PrefabInstance:
     - target: {fileID: 1244125997664160, guid: 62037ab09f9ae32489fec2e2c2fddf25, type: 3}
       propertyPath: m_Name
       value: KitchenCounter_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244125997664160, guid: 62037ab09f9ae32489fec2e2c2fddf25, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4003972808094450, guid: 62037ab09f9ae32489fec2e2c2fddf25, type: 3}
       propertyPath: m_RootOrder

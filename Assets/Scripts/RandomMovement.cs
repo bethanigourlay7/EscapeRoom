@@ -1,52 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; 
+using UnityEngine.AI;
 
-// ref - https://github.com/JonDevTutorial/RandomNavMeshMovement/blob/main/RandomMovement.cs
-public class RandomMovement : MonoBehaviour 
+public class RandomMovement : MonoBehaviour
 {
     public NavMeshAgent robot;
-    public float range; //radius of sphere
+    public float range; // radius of movement
 
-    public Transform centrePoint; //centre of board
+    //tracking distance travelled, i am calculating this in case I want to use it in the 
+    // future 
+    private float totalDistanceTraveled = 0f;
+    private Vector3 lastPosition;
+
 
     void Start()
     {
         robot = GetComponent<NavMeshAgent>();
+        lastPosition = transform.position;
     }
-
 
     void Update()
     {
-        if (robot.remainingDistance <= robot.stoppingDistance) //done with path
+        if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance)
         {
-            Vector3 point;
-            if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                robot.SetDestination(point);
-                Debug.Log("Robot is moving to destination: " + point);
-            }
+            Vector3 randomPoint = GetRandomPointInRange();
+            robot.SetDestination(randomPoint);
+            //Debug.Log("Robot is moving to destination: " + randomPoint);
         }
 
+         // Calculate distance traveled
+        float distanceThisFrame = Vector3.Distance(transform.position, lastPosition);
+        //Debug.Log("Distance travelled this frame " + distanceThisFrame);
+        totalDistanceTraveled += distanceThisFrame;
+        //Debug.Log("Total distance travelled " + totalDistanceTraveled);
+        lastPosition = transform.position;
     }
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+
+    Vector3 GetRandomPointInRange()
     {
-
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
+        Vector3 randomDirection = Random.insideUnitSphere * range;
+        randomDirection += transform.position;
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
-        {
-            //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
-            //or add a for loop like in the documentation
-            result = hit.position;
-            return true;
-        }
-
-        result = Vector3.zero;
-        return false;
+        NavMesh.SamplePosition(randomDirection, out hit, range, NavMesh.AllAreas);
+        return hit.position;
     }
-
-
+    // being used for when robot collides with object
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PickUp"))
+        {
+            float distanceThisTrigger = Vector3.Distance(other.transform.position, lastPosition);
+           // totalDistanceTraveled += distanceThisTrigger;
+            lastPosition = other.transform.position;
+            Debug.Log("Robot entered trigger. Distance traveled: " + distanceThisTrigger);
+        }
+    }
 }
