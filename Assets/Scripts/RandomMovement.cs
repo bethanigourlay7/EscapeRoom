@@ -9,9 +9,17 @@ public class RandomMovement : MonoBehaviour
     public float range; // radius of movement
 
     //tracking distance travelled, i am calculating this in case I want to use it in the 
-    // future 
-    private float totalDistanceTraveled = 0f;
+    // i set the distance travelled as one so that robot does not think it is trapped before moving
+    private float totalDistanceTraveled = 1f;
+    // make sure numOfMovements > 1 before checking if robot is trapped
+    private int numOfMovements = 0;
     private Vector3 lastPosition;
+  
+
+    // for testing purposes
+    float minDistance = 10000;
+   
+  
   
 
     void Start()
@@ -19,6 +27,8 @@ public class RandomMovement : MonoBehaviour
         robot = GetComponent<NavMeshAgent>();
         Debug.Log("robot is "+ robot.isStopped);
         lastPosition = transform.position;
+        
+        
     }
 
     void Update()
@@ -32,20 +42,33 @@ public class RandomMovement : MonoBehaviour
             //Debug.Log("Robot is moving to destination: " + randomPoint);
         }
 
-        // check if robot is trapped 
+      /*  // check if robot is trapped 
         // Check if the robot is trapped in an obstacle (chatGPT)
-        if (robot.velocity.magnitude <= 0.01f && robot.remainingDistance < robot.stoppingDistance)
+        if (robot.velocity.magnitude <= 0.01f && robot.remainingDistance > robot.stoppingDistance)
         {
             robot.isStopped = true;
             Debug.Log("Robot is trapped in an obstacle.");
-        }
+        }*/
 
         // Calculate distance traveled
-        float distanceThisFrame = Vector3.Distance(transform.position, lastPosition);
-        //Debug.Log("Distance travelled this frame " + distanceThisFrame);
+        float distanceThisFrame = Vector3.Distance(transform.position, lastPosition) * 10000;
+        Debug.Log("Distance travelled this frame " + distanceThisFrame);
+  
+
+        // checking min distance
+        if (distanceThisFrame < minDistance)
+        {
+            minDistance = distanceThisFrame;
+            
+            Debug.Log("New min distance is " + minDistance);
+        }
         totalDistanceTraveled += distanceThisFrame;
         //Debug.Log("Total distance travelled " + totalDistanceTraveled);
         lastPosition = transform.position;
+        if(distanceThisFrame > 2)
+        {
+            numOfMovements++;
+        }
     }
 
     Vector3 GetRandomPointInRange()

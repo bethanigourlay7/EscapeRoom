@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
 
             }
         }
+       
 
     }
     private void OnTriggerStay(Collider other)
@@ -29,6 +30,8 @@ public class InputManager : MonoBehaviour
         }
     }
 
+  
+
     private void PickUpObject(GameObject obj)
     {
         obj.transform.parent = transform;
@@ -41,7 +44,7 @@ public class InputManager : MonoBehaviour
     {
         carriedObject.transform.parent = null;
         carriedObject.GetComponent<Rigidbody>().useGravity = true;
-        carriedObject.GetComponent<Rigidbody>().isKinematic = false;
+       carriedObject.GetComponent<Rigidbody>().isKinematic = false;
         carriedObject = null;
     }
 }
