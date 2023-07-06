@@ -12,24 +12,35 @@ public class RandomMovement : MonoBehaviour
     // future 
     private float totalDistanceTraveled = 0f;
     private Vector3 lastPosition;
-
+  
 
     void Start()
     {
         robot = GetComponent<NavMeshAgent>();
+        Debug.Log("robot is "+ robot.isStopped);
         lastPosition = transform.position;
     }
 
     void Update()
     {
-        if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance)
+
+        
+        if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance && robot.isStopped == false)
         {
             Vector3 randomPoint = GetRandomPointInRange();
             robot.SetDestination(randomPoint);
             //Debug.Log("Robot is moving to destination: " + randomPoint);
         }
 
-         // Calculate distance traveled
+        // check if robot is trapped 
+        // Check if the robot is trapped in an obstacle (chatGPT)
+        if (robot.velocity.magnitude <= 0.01f && robot.remainingDistance < robot.stoppingDistance)
+        {
+            robot.isStopped = true;
+            Debug.Log("Robot is trapped in an obstacle.");
+        }
+
+        // Calculate distance traveled
         float distanceThisFrame = Vector3.Distance(transform.position, lastPosition);
         //Debug.Log("Distance travelled this frame " + distanceThisFrame);
         totalDistanceTraveled += distanceThisFrame;
@@ -54,6 +65,8 @@ public class RandomMovement : MonoBehaviour
            // totalDistanceTraveled += distanceThisTrigger;
             lastPosition = other.transform.position;
             Debug.Log("Robot entered trigger. Distance traveled: " + distanceThisTrigger);
+
+           // robot.isStopped = true;
         }
     }
 }
