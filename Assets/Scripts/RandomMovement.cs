@@ -52,7 +52,7 @@ public class RandomMovement : MonoBehaviour
 
         // Calculate distance traveled
         float distanceThisFrame = Vector3.Distance(transform.position, lastPosition) * 10000;
-        Debug.Log("Distance travelled this frame " + distanceThisFrame);
+        //Debug.Log("Distance travelled this frame " + distanceThisFrame);
   
 
         // checking min distance
@@ -79,17 +79,21 @@ public class RandomMovement : MonoBehaviour
         NavMesh.SamplePosition(randomDirection, out hit, range, NavMesh.AllAreas);
         return hit.position;
     }
-    // being used for when robot collides with object
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("PickUp"))
-        {
-            float distanceThisTrigger = Vector3.Distance(other.transform.position, lastPosition);
-           // totalDistanceTraveled += distanceThisTrigger;
-            lastPosition = other.transform.position;
-            Debug.Log("Robot entered trigger. Distance traveled: " + distanceThisTrigger);
 
-           // robot.isStopped = true;
-        }
-    }
+
+
+
+    // being used for when robot collides with object
+    /* void OnCollisionEnter(Collision collision)
+     {
+         if (collision.gameObject.CompareTag("PickUp"))
+         {
+             float distanceThisTrigger = Vector3.Distance(collision.transform.position, lastPosition);
+            // totalDistanceTraveled += distanceThisTrigger;
+             lastPosition = collision.transform.position;
+             Debug.Log("Robot collided with pickup. Distance traveled: " + distanceThisTrigger);
+
+            // robot.isStopped = true;
+         }
+     }*/
 }

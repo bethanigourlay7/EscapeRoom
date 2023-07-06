@@ -30,7 +30,20 @@ public class InputManager : MonoBehaviour
         }
     }
 
-  
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Robot"))
+        {
+            Debug.Log("Collided with robot");
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        // Implement any desired behavior when the object stops colliding
+    }
+
 
     private void PickUpObject(GameObject obj)
     {
