@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,7 +33,7 @@ public class RandomMovement : MonoBehaviour
     void Update()
     {
 
-        
+        //Debug.Log("remaining distance" + robot.remainingDistance);
         if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance && robot.isStopped == false)
         {
             Vector3 randomPoint = GetRandomPointInRange();
@@ -81,19 +80,4 @@ public class RandomMovement : MonoBehaviour
     }
 
 
-
-
-    // being used for when robot collides with object
-    /* void OnCollisionEnter(Collision collision)
-     {
-         if (collision.gameObject.CompareTag("PickUp"))
-         {
-             float distanceThisTrigger = Vector3.Distance(collision.transform.position, lastPosition);
-            // totalDistanceTraveled += distanceThisTrigger;
-             lastPosition = collision.transform.position;
-             Debug.Log("Robot collided with pickup. Distance traveled: " + distanceThisTrigger);
-
-            // robot.isStopped = true;
-         }
-     }*/
 }
