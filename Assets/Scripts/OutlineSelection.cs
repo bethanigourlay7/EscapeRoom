@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +5,14 @@ using UnityEngine.EventSystems;
 
 public class OutlineSelection : MonoBehaviour
 {
+
+
+
+    public Material highlightMaterial;
+    public Material selectionMaterial;
+
+    private Material originalMaterialHighlight;
+    private Material originalMaterialSelection;
     private Transform highlight;
     private Transform selection;
     private RaycastHit raycastHit;
@@ -15,25 +22,19 @@ public class OutlineSelection : MonoBehaviour
         // Highlight
         if (highlight != null)
         {
-            highlight.gameObject.GetComponent<Outline>().enabled = false;
+            highlight.GetComponent<MeshRenderer>().sharedMaterial = originalMaterialHighlight;
             highlight = null;
         }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray =  Camera.main.ScreenPointToRay(Input.mousePosition);
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit)) //Make sure you have EventSystem in the hierarchy before using EventSystem
         {
             highlight = raycastHit.transform;
             if (highlight.CompareTag("PickUp") && highlight != selection)
             {
-                if (highlight.gameObject.GetComponent<Outline>() != null)
+                if (highlight.GetComponent<MeshRenderer>().material != highlightMaterial)
                 {
-                    highlight.gameObject.GetComponent<Outline>().enabled = true;
-                }
-                else
-                {
-                    Outline outline = highlight.gameObject.AddComponent<Outline>();
-                    outline.enabled = true;
-                    highlight.gameObject.GetComponent<Outline>().OutlineColor = Color.magenta;
-                    highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
+                    originalMaterialHighlight = highlight.GetComponent<MeshRenderer>().material;
+                    highlight.GetComponent<MeshRenderer>().material = highlightMaterial;
                 }
             }
             else
@@ -43,27 +44,32 @@ public class OutlineSelection : MonoBehaviour
         }
 
         // Selection
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (highlight)
             {
                 if (selection != null)
                 {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
+                    selection.GetComponent<MeshRenderer>().material = originalMaterialSelection;
                 }
                 selection = raycastHit.transform;
-                selection.gameObject.GetComponent<Outline>().enabled = true;
+                if (selection.GetComponent<MeshRenderer>().material != selectionMaterial)
+                {
+                    originalMaterialSelection = originalMaterialHighlight;
+                    selection.GetComponent<MeshRenderer>().material = selectionMaterial;
+                }
                 highlight = null;
             }
             else
             {
                 if (selection)
                 {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
+                    selection.GetComponent<MeshRenderer>().material = originalMaterialSelection;
                     selection = null;
                 }
             }
         }
+
     }
 
 }
