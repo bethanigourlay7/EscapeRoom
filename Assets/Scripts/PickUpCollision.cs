@@ -4,9 +4,9 @@ using UnityEngine;
 public class PickUpCollision : MonoBehaviour
 {
 
-    private bool collidedWithPickup = false;
+     public bool collidedWithPickup = false;
 
-    private void Update()
+    public void Update()
     {
         if (collidedWithPickup)
         {
@@ -15,7 +15,7 @@ public class PickUpCollision : MonoBehaviour
             collidedWithPickup = false; // Reset the flag
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
        
         if (collision.gameObject.CompareTag("PickUp"))

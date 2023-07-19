@@ -4,6 +4,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public GameObject carriedObject;
+    public Book book;
     // Update is called once per frame
     void Update()
     {
@@ -15,7 +16,19 @@ public class InputManager : MonoBehaviour
 
             }
         }
-       
+  
+        else if (triggerValue > 0.5f && carriedObject == null)
+        {
+            Debug.Log(book.Mode);
+            if (book != null)
+            {
+                if (book.Mode == FlipMode.RightToLeft) // Access the flip mode using the Mode property
+                  
+                    book.DragRightPageToPoint(transform.position);
+                else
+                    book.DragLeftPageToPoint(transform.position);
+            }
+        }
 
     }
     private void OnTriggerStay(Collider other)
@@ -26,6 +39,7 @@ public class InputManager : MonoBehaviour
             {
                 PickUpObject(other.gameObject);
             }
+
         }
     }
 

@@ -7,13 +7,16 @@ public class RandomMovement : MonoBehaviour
     public NavMeshAgent robot;
     public float range; // radius of movement
 
+
+
     //tracking distance travelled, i am calculating this in case I want to use it in the 
     // i set the distance travelled as one so that robot does not think it is trapped before moving
     private float totalDistanceTraveled = 1f;
     // make sure numOfMovements > 1 before checking if robot is trapped
     private int numOfMovements = 0;
     private Vector3 lastPosition;
-  
+
+    public PickUpCollision pickUpCollision;
 
     // for testing purposes
     float minDistance = 10000;
@@ -38,6 +41,11 @@ public class RandomMovement : MonoBehaviour
         {
             Vector3 randomPoint = GetRandomPointInRange();
             robot.SetDestination(randomPoint);
+
+            if (pickUpCollision.collidedWithPickup)
+            {
+                Update();
+            }
             //Debug.Log("Robot is moving to destination: " + randomPoint);
         }
 
