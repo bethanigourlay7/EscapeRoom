@@ -48,10 +48,15 @@ public class InputManager : MonoBehaviour
 
     private void PickUpObject(GameObject obj)
     {
-        obj.transform.parent = transform;
-        carriedObject = obj;
-        carriedObject.GetComponent<Rigidbody>().useGravity = false;
-        carriedObject.GetComponent<Rigidbody>().isKinematic = true;
+        if (obj.CompareTag("PickUp"))
+        {
+            obj.transform.parent = transform;
+            carriedObject = obj;
+            carriedObject.GetComponent<Rigidbody>().useGravity = false;
+            carriedObject.GetComponent<Rigidbody>().isKinematic = true;
+
+        }
+        
     }
 
     private void DropObject()

@@ -449,6 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carriedObject: {fileID: 0}
+  book: {fileID: 0}
 --- !u!114 &464407830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,11 +457,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464407826}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1029fad6c69c041bc90402965d1a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightMaterial: {fileID: 0}
+  selectionMaterial: {fileID: 0}
 --- !u!1001 &484467613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2169,11 +2172,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.1
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 99
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2195,6 +2198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robot: {fileID: 1559105604}
   range: 6.5
+  trappedThisFrame: 0
 --- !u!114 &1559105608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2207,6 +2211,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8462d6c1c3e160d4dbd2d8ebb280c17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collidedWithPickup: 0
+--- !u!114 &1559105611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559105590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d400f24b0d347498290465a34ae62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robot: {fileID: 0}
 --- !u!4 &1689325082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6637057237017734883, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}

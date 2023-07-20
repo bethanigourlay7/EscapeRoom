@@ -2,26 +2,24 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class RandomMovement : MonoBehaviour
 {
     public NavMeshAgent robot;
     public float range; // radius of movement
 
-
+    PickUpCollision pickUpCollision;
 
     //tracking distance travelled, i am calculating this in case I want to use it in the 
     // i set the distance travelled as one so that robot does not think it is trapped before moving
     private float totalDistanceTraveled = 1f;
-    // make sure numOfMovements > 1 before checking if robot is trapped
-    private int numOfMovements = 0;
+  
     private Vector3 lastPosition;
-
-    public PickUpCollision pickUpCollision;
 
     // for testing purposes
     float minDistance = 10000;
-   
-  
+
+    public bool trappedThisFrame;
   
 
     void Start()
@@ -29,14 +27,17 @@ public class RandomMovement : MonoBehaviour
         robot = GetComponent<NavMeshAgent>();
         Debug.Log("robot is "+ robot.isStopped);
         lastPosition = transform.position;
-        
+
+       
         
     }
 
     void Update()
     {
 
-        //Debug.Log("remaining distance" + robot.remainingDistance);
+        if (!robot.isStopped)
+        {
+//Debug.Log("remaining distance" + robot.remainingDistance);
         if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance && robot.isStopped == false)
         {
             Vector3 randomPoint = GetRandomPointInRange();
@@ -49,33 +50,24 @@ public class RandomMovement : MonoBehaviour
             //Debug.Log("Robot is moving to destination: " + randomPoint);
         }
 
-      /*  // check if robot is trapped 
-        // Check if the robot is trapped in an obstacle (chatGPT)
-        if (robot.velocity.magnitude <= 0.01f && robot.remainingDistance > robot.stoppingDistance)
+       // check if robot is trapped 
+        // Check if the robot is trapped in an obstacle (original chatGPT code )
+        /*if (robot.velocity.magnitude <= 0.01f && robot.remainingDistance > robot.stoppingDistance && robot.remainingDistance < 10)
         {
-            robot.isStopped = true;
-            Debug.Log("Robot is trapped in an obstacle.");
+                Debug.log("Robot is trapped);
         }*/
 
-        // Calculate distance traveled
-        float distanceThisFrame = Vector3.Distance(transform.position, lastPosition) * 10000;
-        //Debug.Log("Distance travelled this frame " + distanceThisFrame);
+     
   
 
-        // checking min distance
-        if (distanceThisFrame < minDistance)
-        {
-            minDistance = distanceThisFrame;
-            
-            Debug.Log("New min distance is " + minDistance);
-        }
-        totalDistanceTraveled += distanceThisFrame;
-        //Debug.Log("Total distance travelled " + totalDistanceTraveled);
+     
+     
         lastPosition = transform.position;
-        if(distanceThisFrame > 2)
-        {
-            numOfMovements++;
+
         }
+
+        
+       
     }
 
     Vector3 GetRandomPointInRange()
