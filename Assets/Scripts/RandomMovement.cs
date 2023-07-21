@@ -14,8 +14,6 @@ public class RandomMovement : MonoBehaviour
   
     private Vector3 lastPosition;
 
-    // for testing purposes
-    float minDistance = 10000;
 
     public bool trappedThisFrame;
   
