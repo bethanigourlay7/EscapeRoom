@@ -1,50 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI; 
 
-// ref - https://github.com/JonDevTutorial/RandomNavMeshMovement/blob/main/RandomMovement.cs
-public class RandomMovement : MonoBehaviour 
+using UnityEngine;
+using UnityEngine.AI;
+
+
+public class RandomMovement : MonoBehaviour
 {
     public NavMeshAgent robot;
-    public float range; //radius of sphere
+    public float range; // radius of movement
 
-    public Transform centrePoint; //centre of board
+    PickUpCollision pickUpCollision;
+
+ 
+  
+    private Vector3 lastPosition;
+
+    // for testing purposes
+    float minDistance = 10000;
+
+    public bool trappedThisFrame;
+  
 
     void Start()
     {
         robot = GetComponent<NavMeshAgent>();
+        Debug.Log("robot is "+ robot.isStopped);
+       
+        
     }
-
 
     void Update()
     {
-        if (robot.remainingDistance <= robot.stoppingDistance) //done with path
+
+        if (!robot.isStopped)
         {
-            Vector3 point;
-            if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                robot.SetDestination(point);
-            }
+//Debug.Log("remaining distance" + robot.remainingDistance);
+        if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance && robot.isStopped == false)
+        {
+            Vector3 randomPoint = GetRandomPointInRange();
+            robot.SetDestination(randomPoint);
+
+            
+        }
+
+       // check if robot is trapped 
+        // Check if the robot is trapped in an obstacle (original chatGPT code )
+        /**/
+
+      
+
         }
 
     }
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+
+    Vector3 GetRandomPointInRange()
     {
-
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
+        Vector3 randomDirection = Random.insideUnitSphere * range;
+        randomDirection += transform.position;
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
-        {
-            //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
-            //or add a for loop like in the documentation
-            result = hit.position;
-            return true;
-        }
-
-        result = Vector3.zero;
-        return false;
+        NavMesh.SamplePosition(randomDirection, out hit, range, NavMesh.AllAreas);
+        return hit.position;
     }
 
 

@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
     public GameObject carriedObject;
+    public Book book;
     // Update is called once per frame
     void Update()
     {
@@ -14,6 +14,19 @@ public class InputManager : MonoBehaviour
             {
                 DropObject();
 
+            }
+        }
+  
+        else if (triggerValue > 0.5f && carriedObject == null)
+        {
+            Debug.Log(book.Mode);
+            if (book != null)
+            {
+                if (book.Mode == FlipMode.RightToLeft) // Access the flip mode using the Mode property
+                  
+                    book.DragRightPageToPoint(transform.position);
+                else
+                    book.DragLeftPageToPoint(transform.position);
             }
         }
 
@@ -26,22 +39,31 @@ public class InputManager : MonoBehaviour
             {
                 PickUpObject(other.gameObject);
             }
+
         }
     }
 
+
+
+
     private void PickUpObject(GameObject obj)
     {
-        obj.transform.parent = transform;
-        carriedObject = obj;
-        carriedObject.GetComponent<Rigidbody>().useGravity = false;
-        carriedObject.GetComponent<Rigidbody>().isKinematic = true;
+        if (obj.CompareTag("PickUp"))
+        {
+            obj.transform.parent = transform;
+            carriedObject = obj;
+            carriedObject.GetComponent<Rigidbody>().useGravity = false;
+            carriedObject.GetComponent<Rigidbody>().isKinematic = true;
+
+        }
+        
     }
 
     private void DropObject()
     {
         carriedObject.transform.parent = null;
         carriedObject.GetComponent<Rigidbody>().useGravity = true;
-        carriedObject.GetComponent<Rigidbody>().isKinematic = false;
+       carriedObject.GetComponent<Rigidbody>().isKinematic = false;
         carriedObject = null;
     }
 }
