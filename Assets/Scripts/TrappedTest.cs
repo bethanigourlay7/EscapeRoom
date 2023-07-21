@@ -22,8 +22,6 @@ public class TrappedTest : MonoBehaviour
     // mag
     double vMagTotal;
     double avgVMag;
-    double minVmagAvg;
-    double maxVMagAvg;
 
     Dictionary<int, double> robotSpeedData; 
 
@@ -41,8 +39,6 @@ public class TrappedTest : MonoBehaviour
         seconds = 0;
         numOfFrames = 0;
         vMagTotal = 0;
-        minVmagAvg = 0;
-        maxVMagAvg = 0;
   
         // to display the average velocity per second in a table format at the end of each second
         robotSpeedData = new Dictionary<int, double>(); 
@@ -73,25 +69,23 @@ public class TrappedTest : MonoBehaviour
             numOfFrames = 0;
 
             
-
+            // add new line of speed data to dictionary each second
             robotSpeedData.Add(seconds, avgVMag);
 
             Debug.Log("Second\t| VMagAvg     ");
-            // chatGPT used here for C# foreach syntax
-            foreach (KeyValuePair<int, double> robotSpeed in robotSpeedData)
-            {
 
-                Debug.Log(robotSpeed.Key + "\t\t" + robotSpeed.Value);
-
-            }
+           
 
 
-            DisplaySpeedData();
+            
             if (avgVMag == 0)
             {
                 Debug.Log("robot is trapped");
                 robot.isStopped = true ;
             }
+            
+            
+           // DisplaySpeedData();
 
         }
 
@@ -101,21 +95,12 @@ public class TrappedTest : MonoBehaviour
             LogData(robotSpeedData);
             Debug.Log("File created");
         }
-        // getting min and max values too see how highest and lowest velocities in any given second
-        if(avgVMag < minVmagAvg )
-        {
-            minVmagAvg = avgVMag;
-            Debug.Log("New lowest average magnitude of velocity" );
-        }
-        if(avgVMag > maxVMagAvg)
-        {
-            maxVMagAvg = avgVMag;
-            Debug.Log("New highest average magnitude of velocity ");
-
-        }
+      
 
     }
-
+    /**
+     * Add first line to csv file for robot speed data
+     */
     void CreateCSVFile()
     {
         // Add header row to the CSV file
@@ -123,10 +108,15 @@ public class TrappedTest : MonoBehaviour
         AppendLogToFile(headerRow);
         fileCreated = true;
     }
-
+    /**
+     * Take in dictionary of speed data that includes 
+     * the second and average velocity of magnitude of
+     * the robots movement for each second.
+     * Concatenates each line of data into a string to append to log file. 
+     */
     void LogData(Dictionary<int, double> robotSpeedData)
     {
-
+     
          foreach (KeyValuePair<int, double> robotSpeed in robotSpeedData)
             {
 
@@ -144,6 +134,9 @@ public class TrappedTest : MonoBehaviour
         File.AppendAllText(filePath, logMessage);
     }
 
+    /**
+     * Displays robot speed data to console
+     */
     void DisplaySpeedData()
     {
         // Concatenate all log messages into single string
