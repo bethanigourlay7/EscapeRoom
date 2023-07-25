@@ -7,6 +7,7 @@ public class ShowTerminal : MonoBehaviour
 {
     TrappedTest trapped;
     [SerializeField] public GameObject terminal;
+    [SerializeField] public GameObject environment;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +22,17 @@ public class ShowTerminal : MonoBehaviour
         DisplayTerminal();
     }
 
+    /**
+     * Displays terminal and hides environment within scene
+     */
     void DisplayTerminal()
     {
         if (trapped != null && trapped.robot.isStopped)
         {
             terminal.SetActive(true);
+            environment.SetActive(false);
             Debug.Log("Robot is trapped. Ready to display terminal.");
         }
     }
+
 }
