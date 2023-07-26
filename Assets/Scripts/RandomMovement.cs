@@ -8,6 +8,9 @@ public class RandomMovement : MonoBehaviour
     public NavMeshAgent robot;
     public float range; // radius of movement
 
+    // animation
+    Animator anim;
+
     PickUpCollision pickUpCollision;
 
  
@@ -21,6 +24,7 @@ public class RandomMovement : MonoBehaviour
     void Start()
     {
         robot = GetComponent<NavMeshAgent>();
+        anim = gameObject.GetComponent<Animator>();
         Debug.Log("robot is "+ robot.isStopped);
        
         
@@ -32,7 +36,7 @@ public class RandomMovement : MonoBehaviour
         if (!robot.isStopped)
         {
 //Debug.Log("remaining distance" + robot.remainingDistance);
-        if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance && robot.isStopped == false)
+        if (!robot.pathPending && robot.remainingDistance <= robot.stoppingDistance)
         {
             Vector3 randomPoint = GetRandomPointInRange();
             robot.SetDestination(randomPoint);
@@ -52,6 +56,7 @@ public class RandomMovement : MonoBehaviour
 
     Vector3 GetRandomPointInRange()
     {
+        anim.SetBool("Walk_Anim", true);
         Vector3 randomDirection = Random.insideUnitSphere * range;
         randomDirection += transform.position;
         NavMeshHit hit;

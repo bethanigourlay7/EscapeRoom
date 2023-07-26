@@ -9,11 +9,14 @@ public class ShowTerminal : MonoBehaviour
     [SerializeField] public GameObject terminal;
     [SerializeField] public GameObject environment;
 
+    bool robotMalfunctioning;
+
     // Start is called before the first frame update
     void Start()
     {
         terminal.SetActive(false);
         trapped = GameObject.FindObjectOfType<TrappedTest>();
+     
     }
 
     // Update is called once per frame
@@ -32,6 +35,8 @@ public class ShowTerminal : MonoBehaviour
             terminal.SetActive(true);
             environment.SetActive(false);
             Debug.Log("Robot is trapped. Ready to display terminal.");
+
+
         }
     }
 
