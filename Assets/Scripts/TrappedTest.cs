@@ -11,17 +11,30 @@ using System;
 public class TrappedTest : MonoBehaviour
 {
 
+
+    public bool skipTrapping5Secs = false;
+    public bool testRobotSpeed = false; 
+
+
     private string csvFile = "robotSpeedData.csv";
     Boolean fileCreated;
 
     // tracking seconds independently of frames 
     int seconds;
+
   
     int numOfFrames;
 
     // mag
     double vMagTotal;
     double avgVMag;
+
+
+    // once robot is trapped, check if it has been trapped for 3 seconds
+    int trappedCount;
+    // need to make sure simultaneous seconds have passed since robot is trapped 
+    int trappedOn;
+
 
     Dictionary<int, double> robotSpeedData; 
 
@@ -39,6 +52,9 @@ public class TrappedTest : MonoBehaviour
         seconds = 0;
         numOfFrames = 0;
         vMagTotal = 0;
+
+        trappedCount = 0;
+        trappedOn = 0;
   
         // to display the average velocity per second in a table format at the end of each second
         robotSpeedData = new Dictionary<int, double>(); 
@@ -59,7 +75,7 @@ public class TrappedTest : MonoBehaviour
         if ((seconds + 1) == (int)Time.unscaledTimeAsDouble)
         {
             seconds = seconds + 1;
-            Debug.Log("Another second has passed: " + seconds + " seconds");
+            //Debug.Log("Another second has passed: " + seconds + " seconds");
             avgVMag = vMagTotal / numOfFrames;
             /*Debug.Log("Average magnitude of velocity on second" + seconds + " :      " + avgVMag);
             Debug.Log("Highest average magnitude of velocity " + maxVMagAvg);
@@ -74,14 +90,39 @@ public class TrappedTest : MonoBehaviour
 
             Debug.Log("Second\t| VMagAvg     ");
 
-           
 
+      
 
             
-            if (avgVMag == 0)
+            if (avgVMag == 0 )
             {
-                Debug.Log("robot is trapped");
-                robot.isStopped = true ;
+                if(trappedOn == 0)
+                {
+                    trappedOn = seconds;
+                    Debug.Log("initial trap");
+                    Debug.Log("trapped on " + trappedOn);
+                    trappedCount++;
+
+                } else
+                {
+                    if(seconds == (trappedOn + trappedCount))
+                        {
+                        Debug.Log("Seconds: " + seconds);
+                        Debug.Log("Trapped count:" + trappedCount);
+                            trappedCount++;
+                                // set so robot must be trapped for three seconds to trigger next stage 
+                                if(trappedCount > 3 )
+                                Debug.Log("robot is trapped");
+                                robot.isStopped = true ;
+                    }
+                   /* else
+                    {
+                        trappedOn = 0;
+                        trappedCount = 0;
+                    }*/
+                }
+                
+              
             }
             
             
@@ -89,17 +130,19 @@ public class TrappedTest : MonoBehaviour
 
         }
 
-        if (seconds > 20 && fileCreated == false)
-        {
-            CreateCSVFile();
-            LogData(robotSpeedData);
-            Debug.Log("File created");
-        }
-      
+
+
+        // for testing purposes
+        skipTrap();
+        createFileTestingRobotSpeed();
+
+
 
     }
     /**
      * Add first line to csv file for robot speed data
+     * Appears in desktop and must be manually deleted after
+     * each use
      */
     void CreateCSVFile()
     {
@@ -135,7 +178,7 @@ public class TrappedTest : MonoBehaviour
     }
 
     /**
-     * Displays robot speed data to console
+     * Displays robot speed data to console 
      */
     void DisplaySpeedData()
     {
@@ -149,5 +192,37 @@ public class TrappedTest : MonoBehaviour
 
         Debug.Log(logMessage);
     }
+    
+
+    /**
+     * If Test Robot speed toggled true in inspector,
+     * create test file
+     * */
+    public void createFileTestingRobotSpeed()
+    {
+        if (testRobotSpeed == true && fileCreated == false)
+        {
+            if (seconds > 20)
+            {
+                CreateCSVFile();
+                LogData(robotSpeedData);
+                Debug.Log("File created");
+            }
+        }
+    }
+
+    /**
+     * If autoTrapVariable toggled,
+     * automatically trap robot after 5 seconds
+     * */
+    public void skipTrap()
+    {
+        if(!robot.isStopped && seconds > 5 && skipTrapping5Secs == true)
+        {
+            Debug.Log("Robot has automatically been trapped");
+            robot.isStopped = true;
+        }
+    }
+    
 
 }
