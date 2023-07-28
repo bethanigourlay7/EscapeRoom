@@ -11,21 +11,18 @@ using System;
 public class TrappedTest : MonoBehaviour
 {
 
-
+    // see method SkipTrap()
     public bool skipTrapping5Secs = false;
+    // see method createFileTestingRobotSpeed()
     public bool testRobotSpeed = false; 
-
-
     private string csvFile = "robotSpeedData.csv";
     Boolean fileCreated;
 
     // tracking seconds independently of frames 
     int seconds;
-
-  
     int numOfFrames;
 
-    // mag
+    // velocity of magnitude variables to calculate movement of robot 
     double vMagTotal;
     double avgVMag;
 
@@ -99,8 +96,8 @@ public class TrappedTest : MonoBehaviour
                 if(trappedOn == 0)
                 {
                     trappedOn = seconds;
-                    Debug.Log("initial trap");
-                    Debug.Log("trapped on " + trappedOn);
+                    //Debug.Log("initial trap");
+                    //Debug.Log("trapped on " + trappedOn);
                     trappedCount++;
 
                 } else
@@ -129,8 +126,6 @@ public class TrappedTest : MonoBehaviour
            // DisplaySpeedData();
 
         }
-
-
 
         // for testing purposes
         skipTrap();

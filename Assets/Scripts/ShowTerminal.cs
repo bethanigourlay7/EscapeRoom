@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class ShowTerminal : MonoBehaviour
 {
-    TrappedTest trapped;
-    [SerializeField] public GameObject terminal;
-    [SerializeField] public GameObject environment;
+    Robot robot;
+    [SerializeField] private GameObject terminal;
+    [SerializeField] private GameObject environment;
 
     bool robotMalfunctioning;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         terminal.SetActive(false);
-        trapped = GameObject.FindObjectOfType<TrappedTest>();
-     
+        robot = GameObject.FindObjectOfType<Robot>();
     }
 
     // Update is called once per frame
@@ -30,13 +30,11 @@ public class ShowTerminal : MonoBehaviour
      */
     void DisplayTerminal()
     {
-        if (trapped != null && trapped.robot.isStopped)
+        if (robot != null && robot.robot.isStopped) // checking if the Robot is stopped
         {
             terminal.SetActive(true);
             environment.SetActive(false);
             Debug.Log("Robot is trapped. Ready to display terminal.");
-
-
         }
     }
 
