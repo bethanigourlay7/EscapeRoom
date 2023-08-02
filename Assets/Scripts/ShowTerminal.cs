@@ -8,21 +8,30 @@ public class ShowTerminal : MonoBehaviour
     Robot robot;
     [SerializeField] private GameObject terminal;
     [SerializeField] private GameObject environment;
+    private GameManager gameManager;
 
     bool robotMalfunctioning;
-    
+    bool terminalDisplayed;
+  
 
     // Start is called before the first frame update
     void Start()
     {
         terminal.SetActive(false);
         robot = GameObject.FindObjectOfType<Robot>();
+        terminalDisplayed = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        DisplayTerminal();
+        if(terminalDisplayed == false)
+        {
+             DisplayTerminal();
+            terminalDisplayed = true;
+        }
+       
     }
 
     /**
@@ -30,12 +39,12 @@ public class ShowTerminal : MonoBehaviour
      */
     void DisplayTerminal()
     {
-        if (robot != null && robot.robot.isStopped) // checking if the Robot is stopped
-        {
             terminal.SetActive(true);
             environment.SetActive(false);
             Debug.Log("Robot is trapped. Ready to display terminal.");
-        }
+           
+            terminalDisplayed = true;
+ 
     }
 
 }

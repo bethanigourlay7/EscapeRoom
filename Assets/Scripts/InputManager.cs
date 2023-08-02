@@ -10,48 +10,30 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] public GameObject carriedObject;
     public Book book;
-
+    public bool bookOpen;
     GameObject cube;
     GameObject bookUI;
     // Update is called once per frame
 
+    // materials 
+    Material mat1;
+    Material mat2;
+    Material mat3;
+
+    public int speed;
    
     void Update()
     {
-/*
-        // with new input system 
-        // Get the wand device only once and store the reference for reuse
-        if (TiltFive.Wand.TryGetWandDevice(TiltFive.PlayerIndex.One, TiltFive.ControllerIndex.Right, out wandDevice))
+
+        if(bookOpen == true)
         {
-            // Handle trigger input
-            if (wandDevice.Trigger.IsPressed())
-            {
-                Debug.Log("Trigger is hit with new input system as well" + wandDevice.Trigger.value);
-                book.GetComponent<AutoFlip>().FlipRightPage();
-            }
 
-            // When book is present 
-            
+            BookActions();
 
-*//*
-            // Handle button input (One and Two)
-            if (wandDevice.One.wasPressedThisFrame)
-            {
-                cube.GetComponent<MeshRenderer>().material = mat1;
-            }
-            if (wandDevice.Two.wasPressedThisFrame)
-            {
-                cube.GetComponent<MeshRenderer>().material = mat2;
-            }
-            if (!wandDevice.One.isPressed && !wandDevice.Two.isPressed)
-            {
-                cube.GetComponent<MeshRenderer>().material = mat3;
-            }*//*
-
-            // Handle stick movement
-            cube.transform.Translate(wandDevice.Stick.ReadValue().x * Time.deltaTime * speed, 0.0f, wandDevice.Stick.ReadValue().y * Time.deltaTime * speed);
+            return;
         }
-*/
+
+        
 
         if (TiltFive.Input.TryGetTrigger(out var triggerValue))
         {
@@ -94,8 +76,6 @@ public class InputManager : MonoBehaviour
     }
 
 
-
-
     private void PickUpObject(GameObject obj)
     {
         if (obj.CompareTag("PickUp"))
@@ -114,5 +94,42 @@ public class InputManager : MonoBehaviour
         carriedObject.GetComponent<Rigidbody>().useGravity = true;
        carriedObject.GetComponent<Rigidbody>().isKinematic = false;
         carriedObject = null;
+    }
+
+    public void BookActions()
+    {
+        // with new input system 
+        // Get the wand device only once and store the reference for reuse
+        if (TiltFive.Wand.TryGetWandDevice(TiltFive.PlayerIndex.One, TiltFive.ControllerIndex.Right, out wandDevice))
+        {
+            // Handle trigger input
+            if (wandDevice.Trigger.IsPressed())
+            {
+                Debug.Log("Trigger is hit with new input system as well" + wandDevice.Trigger.value);
+                book.GetComponent<AutoFlip>().FlipRightPage();
+            }
+
+            // When book is present 
+
+
+
+            // Handle button input (One and Two)
+            if (wandDevice.One.wasPressedThisFrame)
+            {
+                cube.GetComponent<MeshRenderer>().material = mat1;
+            }
+            if (wandDevice.Two.wasPressedThisFrame)
+            {
+                cube.GetComponent<MeshRenderer>().material = mat2;
+            }
+            if (!wandDevice.One.isPressed && !wandDevice.Two.isPressed)
+            {
+                cube.GetComponent<MeshRenderer>().material = mat3;
+            }
+
+            // Handle stick movement
+            cube.transform.Translate(wandDevice.Stick.ReadValue().x * Time.deltaTime * speed, 0.0f, wandDevice.Stick.ReadValue().y * Time.deltaTime * speed);
+        }
+
     }
 }

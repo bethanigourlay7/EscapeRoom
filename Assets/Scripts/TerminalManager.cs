@@ -99,7 +99,7 @@ public class TerminalManager : MonoBehaviour
 
     void ScrollToBottom(int lines)
     {
-        if(lines > 4)
+        if(lines > 10)
         {
             Debug.Log("Lines are :" + lines);
             sr.velocity = new Vector2(0, 450);

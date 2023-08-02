@@ -25,6 +25,9 @@ public class Robot : MonoBehaviour
 
     public bool isTrapped;
 
+    // diagnostic variables, for use in the the Interpreter script when robot is being fixed
+
+
 
     void Start()
     {
@@ -40,7 +43,7 @@ public class Robot : MonoBehaviour
         {
             SpeedTest();
         }
-        if (skipTrapping5Secs)
+        if (skipTrapping5Secs == true)
         {
             SkipTrap();
         }
@@ -130,10 +133,48 @@ public class Robot : MonoBehaviour
 
     void SkipTrap()
     {
-        if (!robot.isStopped && seconds > 5)
+        if ((seconds + 1) == (int)Time.unscaledTimeAsDouble)
+        {
+            seconds++;
+            avgVMag = vMagTotal / numOfFrames;
+            vMagTotal = 0;
+            numOfFrames = 0;
+
+            robotSpeedData.Add(seconds, avgVMag);
+
+            if (avgVMag == 0)
+            {
+                if (trappedOn == 0)
+                {
+                    trappedOn = seconds;
+                    trappedCount++;
+                }
+                else if (seconds == (trappedOn + trappedCount))
+                {
+                    trappedCount++;
+                    if (trappedCount > 3)
+                    {
+                        isTrapped = true;
+                        robot.isStopped = true;
+                        
+                    }
+                }
+            }
+
+            if (seconds > 20 && !fileCreated)
+            {
+                CreateCSVFile();
+                LogData(robotSpeedData);
+                fileCreated = true;
+            }
+        }
+
+        if (robot.isStopped == false && seconds > 5 && skipTrapping5Secs == true)
         {
             robot.isStopped = true;
         }
     }
+
+
 
 }
