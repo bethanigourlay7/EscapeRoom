@@ -26,7 +26,14 @@ public class Robot : MonoBehaviour
     public bool isTrapped;
 
     // diagnostic variables, for use in the the Interpreter script when robot is being fixed
+    public String robotModel { get;  set; }
+    public String softwareVersion { get; set; }
+    public String capacitorRatingFull { get;  set; }
+    public String capacitorRating { get; set; }
+    public String infraredSensitivity { get;  set; }
 
+    // boolean to check if robot has been fixed
+    public bool robotFixed = false; 
 
 
     void Start()
@@ -34,6 +41,14 @@ public class Robot : MonoBehaviour
         robot = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         robotSpeedData = new Dictionary<int, double>();
+
+        // set robot diagnostic variables 
+        robotModel = "123456";
+        softwareVersion = "3.1.2";
+        capacitorRatingFull = "3000";
+        infraredSensitivity = "400";
+
+       
     }
 
     void Update()
