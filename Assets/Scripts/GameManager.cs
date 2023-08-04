@@ -17,19 +17,29 @@ public class GameManager : MonoBehaviour
     Robot robotAgent;
     public GameObject book;
 
-    bool stage1Started;
-    bool stage2Started;
+    public GameObject UITextObject;
+    public GameObject UITextDisplay;
+
+    // text controller to display relevant information to user
+
+    TextController textController;
+
+    bool stage1Started = false;
+    bool stage2Started = false;
     
     bool stage3Started;
 
     // Start is called before the first frame update
     void Start()
-    {  
+    {
 
+
+        textController = UITextDisplay.GetComponent<TextController>(); 
+        //UIText.SetActive(false);
         //stageOneInput = inputManager.GetComponent<StageOneInput>();
         robotAgent = GameObject.FindObjectOfType<Robot>();
-        
 
+      
         if(robotAgent!= null)
         {
             Debug.Log("robot exists");
@@ -45,8 +55,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("robot stoppped " + robotAgent.robot.isStopped);
+        // stage 1 will start as soon as start is pressed in the menu and 
+        if(stage1Started == false)
+        {
+          
+            stage1Started = true;
+            StageOne();
+            
+        }
 
+        //Debug.Log("robot stoppped " + robotAgent.robot.isStopped);
+
+        // after the robot has been trapped, move on to stage 2
         if (robotAgent.robot.isStopped == true && stage2Started == false)
         {
             Debug.Log("Stage 2 started " + stage2Started);
@@ -56,11 +76,16 @@ public class GameManager : MonoBehaviour
     }
 
     /**
-     * 
      * Start game 
      */
     void StageOne()
     {
+
+        Debug.Log("Stage1 started");
+ 
+        // start displaying text from the text controller 
+        StartCoroutine( textController.DisplayTextOverTime(textController.startText));
+
         robotAgent = robotObject.GetComponent<Robot>();
 
         // level 1
