@@ -1286,6 +1286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carriedObject: {fileID: 0}
   book: {fileID: 0}
+  bookOpen: 0
+  speed: 0
 --- !u!4 &1446310078
 Transform:
   m_ObjectHideFlags: 0

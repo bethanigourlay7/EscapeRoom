@@ -72,7 +72,7 @@ public class TerminalManager : MonoBehaviour
         // Set the text of this new gameobject (remember indexes of children objects)
         msg.GetComponentsInChildren<Text>()[1].text = userInput;
 
-    }
+    } 
 
     int AddInterpreterLines(List<string> interpretation)
     {
@@ -101,7 +101,7 @@ public class TerminalManager : MonoBehaviour
     {
         if(lines > 10)
         {
-            Debug.Log("Lines are :" + lines);
+            Debug.Log("Lines are :" + lines); 
             sr.velocity = new Vector2(0, 450);
         }
         else
