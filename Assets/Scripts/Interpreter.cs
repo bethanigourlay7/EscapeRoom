@@ -117,7 +117,66 @@ public class Interpreter : MonoBehaviour
             return response;
         }
     }
+    /*
+     * Added an easy level interpreter option
+     */
+    public List<string> InterpretEasy(string userInput)
+    {
+        response.Clear();
+        // help --command
 
+        string[] args = userInput.Split();
+        string[] beepBoopArgs = robot.beepBoop.Split();
+        int beepBoopCount = beepBoopArgs.Length;
+        int count = 0;
+        bool started = false;
+
+        string[] commands = { "beep", "boop", "go" };
+
+        if(args[0] == "boop")
+        {
+            if(started == false)
+            {
+                 count = 0;
+            }
+           
+            response.Add("Hi friend, lets play a game.");
+            response.Add("When I say 'beep' you say 'boop' and remember the pattern" );
+            response.Add("For example, I say...");
+            response.Add("boop");
+            response.Add("you say...");
+            response.Add("beep");
+            response.Add("then if i say beep, you remember your previous answer then say 'boop' like this...");
+            response.Add("beep boop");
+            response.Add("And so on, type 'go' to start :)");
+            started = true; 
+        }
+        
+        if (count == 0 && args[0] == "go" && started == true) 
+        {
+            response.Add("1 " + beepBoopArgs[0]);
+            count += 1;
+        } else if (count == 1 && args[0] == "beep")
+        {
+            response.Add("2 " +beepBoopArgs[1]);
+            count += 1;
+        } else if (count == 2 && args[0] == "beep" && args[1] == "boop")  {
+            response.Add("3" + beepBoopArgs[2]);
+            count += 1;
+        } else if (count == 3 && args[0] == "beep" && args[1] == "boop" && args[2] == "boop")
+        {
+            response.Add("You've won!");
+        } 
+        else if(started == true )
+        {
+            
+            started = false;
+            response.Add("If you want to use the terminal type, 'boop'");
+
+        }
+       
+        return response;
+    }
 
     string robotFixCheck()
     {

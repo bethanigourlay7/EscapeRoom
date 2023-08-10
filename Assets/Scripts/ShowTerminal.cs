@@ -12,6 +12,8 @@ public class ShowTerminal : MonoBehaviour
 
     bool robotMalfunctioning;
     bool terminalDisplayed;
+
+    GameObject buttons; 
   
 
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class ShowTerminal : MonoBehaviour
     {
         terminal.SetActive(false);
         robot = GameObject.FindObjectOfType<Robot>();
+        
         terminalDisplayed = false;
 
     }

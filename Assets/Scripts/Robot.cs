@@ -9,7 +9,7 @@ public class Robot : MonoBehaviour
     public float range;
     private Animator animator;
     private Dictionary<int, double> robotSpeedData;
-    public bool skipTrapping5Secs = false;
+    public bool skipTrapping10Secs = false;
     public bool testRobotSpeed = false;
     private string csvFile = "robotSpeedData.csv";
     private bool fileCreated;
@@ -23,7 +23,9 @@ public class Robot : MonoBehaviour
     private int trappedCount;
     private int trappedOn;
 
-    public bool isTrapped;
+    public bool isTrapped = false;
+
+    public string beepBoop = "boop beep beep";
 
     // diagnostic variables, for use in the the Interpreter script when robot is being fixed
     public String robotModel { get;  set; }
@@ -41,6 +43,7 @@ public class Robot : MonoBehaviour
         robot = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         robotSpeedData = new Dictionary<int, double>();
+        isTrapped = false;
 
         // set robot diagnostic variables 
         robotModel = "123456";
@@ -58,9 +61,9 @@ public class Robot : MonoBehaviour
         {
             SpeedTest();
         }
-        if (skipTrapping5Secs == true)
+        if (skipTrapping10Secs == true)
         {
-            SkipTrap();
+            Trap();
         }
       
     }
@@ -146,7 +149,7 @@ public class Robot : MonoBehaviour
         File.AppendAllText(filePath, logMessage);
     }
 
-    void SkipTrap()
+    void Trap()
     {
         if ((seconds + 1) == (int)Time.unscaledTimeAsDouble)
         {
@@ -169,7 +172,7 @@ public class Robot : MonoBehaviour
                     trappedCount++;
                     if (trappedCount > 3)
                     {
-                        isTrapped = true;
+                       // isTrapped = true;
                         robot.isStopped = true;
                         
                     }
@@ -184,9 +187,12 @@ public class Robot : MonoBehaviour
             }
         }
 
-        if (robot.isStopped == false && seconds > 5 && skipTrapping5Secs == true)
+        if (robot.isStopped == false && seconds > 10 && skipTrapping10Secs == true)
         {
             robot.isStopped = true;
+            isTrapped = true;
+            animator.SetBool("Walk_Anim", false);
+
         }
     }
 

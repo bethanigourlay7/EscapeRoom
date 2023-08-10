@@ -8,22 +8,23 @@ public class TextController : MonoBehaviour
     public float delay = 0.1f;
     private string myString;
 
-
+    private bool textOngoing;
+   
     // stages and text
     // start of game
     public string startText = "Hi user, your smart home robot appears to be malfunctioning and is not responding to commands. Find the manual to see instructions on how to fix the robot.";
 
     // prompt user to find manual
-    string findManualText = "There is a manual that may have instructions on how to fix your robot";
+    public string findManualText = "There is a manual that may have instructions on how to fix your robot";
 
     // 
 
     // robot has been trapped 
 
-    string robotTrapped = "Well done, now the robot has been trapped, see the manual to for next steps";
+    public string robotTrapped = "Well done, now the robot has been trapped, see the manual to for next steps";
 
-    // 
-
+    // Game manager to reference what stage the game is in
+    GameManager gameManager;
 
     
 
@@ -31,14 +32,59 @@ public class TextController : MonoBehaviour
     {
         myString = uiText.text; // Get the current text in the TMP_Text component
         uiText.text = ""; // Clear the text
+        gameManager = FindAnyObjectByType<GameManager>();
+      
     }
 
-    public IEnumerator DisplayTextOverTime(string text)
+    public IEnumerator DisplayTextOverTime()
     {
+        uiText.text = "";
+        string text = this.CurrentString();
+        Debug.Log("The text in the ui is " + uiText.text);
+        
+        Debug.Log("The text in the text variable is " +text);
+        textOngoing = true;
         for (int i = 0; i < text.Length; i++)
         {
-            uiText.text += text[i];
+            uiText.text += text[i] ;
             yield return new WaitForSeconds(delay);
         }
+        textOngoing = false;
+    }
+        
+    public string CurrentString()
+    {
+        string returnString;
+        returnString = "";
+        if (gameManager.InStageOne())
+        {
+            if (gameManager.robotAgent.robot.isStopped == false)
+            {
+                returnString = startText;
+            }
+           
+        }
+        else if (gameManager.InStageTwo())
+        {
+            Debug.Log( "in stage 2");
+            returnString = robotTrapped;
+        }else if(gameManager.InStageThree())
+        {
+            Debug.Log("in stage 3");
+            returnString = "finished";
+        }
+        else
+        {
+            returnString =  "i dont know where i am";
+        }
+        return returnString;
+    }
+
+    /**
+     * Checks if text is ongoing 
+     */
+    public bool IsTextOngoing()
+    {
+        return textOngoing;
     }
 }
