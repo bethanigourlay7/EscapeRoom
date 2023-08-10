@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     private bool atStageTwo = false;
     private bool atStageThree = false;
 
+
+   
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -91,6 +94,7 @@ public class GameManager : MonoBehaviour
         // stageOneInput.enabled();
         robotObject.SetActive(true);
         terminalManager.SetActive(false);
+        environment.SetActive(true);
         // add text here indicating robot is trapped and pass to next stage
     }
 

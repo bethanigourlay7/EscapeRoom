@@ -9,19 +9,17 @@ public class TextController : MonoBehaviour
     private string myString;
 
     private bool textOngoing;
-   
+
     // stages and text
     // start of game
-    public string startText = "Hi user, your smart home robot appears to be malfunctioning and is not responding to commands. Find the manual to see instructions on how to fix the robot.";
+    public string startText = "Hi user, your smart home robot appears to be malfunctioning and is not responding to commands. Find the manual to see instructions on how to fix the robot. Hit help to open and close this windoww";
 
     // prompt user to find manual
-    public string findManualText = "There is a manual that may have instructions on how to fix your robot";
-
-    // 
+    public string findManualText = "There is a manual that may have instructions on how to fix your robot. Hit help to open and close this window.";
 
     // robot has been trapped 
 
-    public string robotTrapped = "Well done, now the robot has been trapped, see the manual to for next steps";
+    public string robotTrapped = "Well done, now the robot has been trapped, see the manual to for next steps. Hit help to open and close this window.";
 
     // Game manager to reference what stage the game is in
     GameManager gameManager;
