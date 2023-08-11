@@ -176,7 +176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2404005340664060635, guid: 166e51eed34a6da42ad691b8e42b6762, type: 3}
       propertyPath: m_Name
-      value: InputManager (1)
+      value: InputManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404005340664060635, guid: 166e51eed34a6da42ad691b8e42b6762, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166e51eed34a6da42ad691b8e42b6762, type: 3}
@@ -936,7 +940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1036712244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1263,7 +1267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1083891704
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1515,12 +1519,12 @@ GameObject:
   - component: {fileID: 1446310074}
   - component: {fileID: 1446310079}
   m_Layer: 0
-  m_Name: InputManager
+  m_Name: InputManager(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1446310074
 MonoBehaviour:
   m_ObjectHideFlags: 0

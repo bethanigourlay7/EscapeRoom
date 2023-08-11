@@ -17,10 +17,19 @@ namespace TiltFiveDemos
         private new void Update()
         {
 
-            if(_active &&terminalObject.activeInHierarchy == false)
+         /*there were issues with accessing the terminal
+*         when the tilt five wand used the raycast to interact with UI.
+*         To resolve the issue, the raycast is turned off when the terminal is active
+*            and all access is handed over to the keyboard user.*/
+
+            if(terminalObject != null)
             {
-                StartRaycast();
+             if(_active &&terminalObject.activeInHierarchy == false)
+                        {
+                            StartRaycast();
+                        }
             }
+           
         }
 
         /// <summary>

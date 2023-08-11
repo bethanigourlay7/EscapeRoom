@@ -46,7 +46,8 @@ public class TerminalManager : MonoBehaviour
             if(easyLevel == false)
             {
                 lines = AddInterpreterLines(interpreter.Interpret(userInput));
-            } else
+            } 
+            else
             {
                 lines = AddInterpreterLines(interpreter.InterpretEasy(userInput));
             }

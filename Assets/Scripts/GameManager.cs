@@ -8,10 +8,30 @@ public class GameManager : MonoBehaviour
     private InputManager inputManager;
 
     public GameObject terminalManager;
-
+    /*
+     * Button to open and close the terminal window, only available from stage 2 onwards
+     */
+    public GameObject terminalButton;
+    /*
+     * Button to open and close the manual, available throughout the whole game
+     */
+    public GameObject manualButton;
+    /*
+     * !!!!!!!!!!!!!!!!!!!!!!!!!
+     */
     public GameObject environment;
+    /*
+     * object to access robot components
+     */
     public GameObject robotObject;
+    /*
+     * Access scripting variables
+     */
     public Robot robotAgent;
+    /*
+     * 
+     * !!!!!!
+     */
     public GameObject book;
 
     public GameObject UITextObject;
@@ -67,10 +87,15 @@ public class GameManager : MonoBehaviour
 
             atStageTwo = true;
             atStageOne = false;
-            DisplayText();
            
-                //StageTwo();
+           
+               StageTwo();
             
+        }
+
+        if(robotAgent.robotFixed == true)
+        {
+            Debug.Log("robot is fixed");
         }
     }
 
@@ -94,7 +119,8 @@ public class GameManager : MonoBehaviour
         robotObject.SetActive(true);
        // terminalManager.SetActive(false);
         environment.SetActive(true);
-        // add text here indicating robot is trapped and pass to next stage
+        // ensure terminal button is not available
+        terminalButton.SetActive(false);
     }
 
     /**
@@ -104,9 +130,10 @@ public class GameManager : MonoBehaviour
     private void StageTwo()
     {
         // add a text here indicating next stage of game
-      
-       
-            terminalManager.SetActive(true);
+
+        DisplayText();
+       //     terminalManager.SetActive(true);
+             terminalButton.SetActive(true);
             /*environment.SetActive(false);
             robotObject.SetActive(false);
             UITextObject.SetActive(false);*/

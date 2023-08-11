@@ -18,7 +18,7 @@ public class Interpreter : MonoBehaviour
 
 
     // variables to check robot spec against 
-    string latestSoftwareVersion = "3.1.3";
+    string latestSoftwareVersion = "1.1.3";
     string capacitorTarget = "2400";
     string sensorTarget = "850";
 
@@ -38,7 +38,7 @@ public class Interpreter : MonoBehaviour
             response.Add("--calibratesensorinfrared [insert num] - calibrates the sensor to specified number ");
             response.Add("--setcapacitor [insert num] - sets capacitor to specified number");
             response.Add("--checkforupdates - checks if robots software version is up to date");
-            response.Add("--softwareupdate - update robot to most recent version");
+            response.Add("--softwareupdate [insert num]- update robot to most recent version");
             response.Add("--reboot - reboots robot system");
 
  
@@ -84,16 +84,32 @@ public class Interpreter : MonoBehaviour
         }
         else if (args[0] == "--softwareupdate")
         {
+            if(args[1].Length > 0)
+            {
+                if(args[1] == latestSoftwareVersion )
+                {
+                    robot.softwareVersion = args[1];
+                    response.Add("Robot software version set to 1.1.3");
+                } 
+                else if(args[1] == "1.1.2")
+                {
+                    robot.softwareVersion = args[1];
+                    response.Add("Robot software version set to 1.1.2");
+                }  
+                else if (args[1] == "1.1.1" )
+                 {
+                    robot.softwareVersion = args[1];
+                    response.Add("Robot software version set to 1.1.1");
 
-            robot.softwareVersion = args[1];
-            if (robot.softwareVersion == latestSoftwareVersion)
+                 } else 
+                    {
+                        response.Add("This software version does not exist.");
+                    }
+            } else
             {
-                response.Add("Robot is up to date");
+                response.Add("You did not specify a software type.");
             }
-            else
-            {
-                response.Add("Robot is not up to date");
-            }
+            
             return response;
         }
         else if (args[0] == "--reboot")
@@ -105,7 +121,7 @@ public class Interpreter : MonoBehaviour
             response.Add("Robots current capacitor rating : " + robot.capacitorRating);
             response.Add("Robots infrared sensitivity : " + robot.infraredSensitivity);
 
-            response.Add(robotFixCheck());
+            response.Add(robotFixCheckHard());
 
             return response;
 
@@ -178,7 +194,7 @@ public class Interpreter : MonoBehaviour
         return response;
     }
 
-    string robotFixCheck()
+    string robotFixCheckHard()
     {
 
         string response;

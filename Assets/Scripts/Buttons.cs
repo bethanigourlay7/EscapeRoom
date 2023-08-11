@@ -21,6 +21,12 @@ public class Buttons : MonoBehaviour
         terminalManagerScript = FindObjectOfType<TerminalManager>();
     }
 
+    private void Update()
+    {
+        EscapeButton();
+    }
+
+
     /**
     * Script for play button to change to lvl1 scene
     */
@@ -51,6 +57,31 @@ public class Buttons : MonoBehaviour
        
     }
 
+
+    /**
+     * Only available if terminal is active. This turns off the raycast so only the keyboard user can type
+     * Pressing escape closes the terminal and turns the raycast from the wand back on so tilt five user can
+     * interact with the board. 
+     */
+    void EscapeButton()
+    {
+        
+
+
+        Debug.Log("Clicking terminal manager button");
+        if (terminalManager.activeInHierarchy == true)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+        {
+            Debug.Log("Escape key pressed");
+               terminalManager.SetActive(false);
+            Debug.Log("terminal manager set to false");
+            return;
+
+        }
+           
+        }
+    }
     public void OpenCloseTerminal()
     {
 
@@ -59,11 +90,17 @@ public class Buttons : MonoBehaviour
         if (terminalManager.activeInHierarchy ==true)
         {
             terminalManager.SetActive(false);
+            Debug.Log("terminal manager set to false");
             return;
         }
         if(terminalManager.activeInHierarchy == false)
         {
             terminalManager.SetActive(true);
+            foreach (Transform child in terminalManager.transform)
+            {
+
+                child.gameObject.SetActive(true);
+            }
             return;
         }
     }
