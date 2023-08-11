@@ -68,10 +68,9 @@ public class GameManager : MonoBehaviour
             atStageTwo = true;
             atStageOne = false;
             DisplayText();
-            if (textController.IsTextOngoing() == false)
-            {
+           
                 StageTwo();
-            }
+            
         }
     }
 
@@ -93,7 +92,7 @@ public class GameManager : MonoBehaviour
         inputManagerObject.SetActive(true);
         // stageOneInput.enabled();
         robotObject.SetActive(true);
-        terminalManager.SetActive(false);
+       // terminalManager.SetActive(false);
         environment.SetActive(true);
         // add text here indicating robot is trapped and pass to next stage
     }
@@ -108,9 +107,9 @@ public class GameManager : MonoBehaviour
       
        
             terminalManager.SetActive(true);
-            environment.SetActive(false);
+            /*environment.SetActive(false);
             robotObject.SetActive(false);
-            UITextObject.SetActive(false);
+            UITextObject.SetActive(false);*/
         
         
     }
