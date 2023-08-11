@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             atStageOne = false;
             DisplayText();
            
-                StageTwo();
+                //StageTwo();
             
         }
     }

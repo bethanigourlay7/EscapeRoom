@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 namespace TiltFiveDemos
 {
+
+    
     /// <summary>
     /// Select with the direction directly from the glasses to the wand.
     /// </summary>
     public class WandPointerView : WandPointer
     {
+        
+        public GameObject terminalObject; 
         private new void Update()
         {
-            if(_active)
+
+            if(_active &&terminalObject.activeInHierarchy == false)
             {
                 StartRaycast();
             }
