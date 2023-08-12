@@ -87,6 +87,7 @@ public class Robot : MonoBehaviour
         }
     }
 
+
     void SpeedTest()
     {
         vMagTotal += robot.velocity.magnitude;

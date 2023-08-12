@@ -10,6 +10,10 @@ public class Buttons : MonoBehaviour
 
     public GameObject terminalManager;
 
+    public GameObject manualButton;
+
+    public GameObject book;
+
     ShowTerminal showTerminal;
 
     TerminalManager terminalManagerScript;
@@ -105,14 +109,29 @@ public class Buttons : MonoBehaviour
         }
     }
 
-    public void debugButtonTest()
+
+    public void FindManualButton()
     {
-        Debug.Log("Button pressed");
+        if(manualButton.activeInHierarchy == false)
+        {
+            manualButton.SetActive(true);
+            Debug.Log("Clicked find manual button");
+
+        }
+
     }
 
     public void ManualButton()
     {
-
+        Debug.Log("Manual button pressed");
+        if(book.activeInHierarchy == true)
+        {
+            book.SetActive(false);
+            return;
+        } else
+        {
+            book.SetActive(true);
+        }
     }
 
     /*

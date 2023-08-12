@@ -46,9 +46,8 @@ public class InputManager : MonoBehaviour
 
       
 
-            //BookActions();
-
-            
+        //BookActions();
+             
 
         if (TiltFive.Input.TryGetTrigger(out var triggerValue))
         {
@@ -119,6 +118,9 @@ public class InputManager : MonoBehaviour
             Debug.Log("button pressed");
         }
     }
+
+
+    
 
     public void BookActions()
     {
