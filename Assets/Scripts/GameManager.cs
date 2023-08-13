@@ -37,26 +37,36 @@ public class GameManager : MonoBehaviour
     public GameObject UITextObject;
     public GameObject UITextDisplay;
 
+   
+
     // text controller to display relevant information to user
 
     private TextController textController;
 
     // variables to show what stage the game is in
+    public bool atTutorial = true; 
     private bool atStageOne = false;
-
     private bool atStageTwo = false;
     private bool atStageThree = false;
 
+ 
 
    
 
     // Start is called before the first frame update
     private void Start()
+
     {
+      
+        //setting everything to false at start of game
+        terminalManager.SetActive(false);
+       
+        UITextDisplay.SetActive(true);
         textController = UITextDisplay.GetComponent<TextController>();
         //UIText.SetActive(false);
         //stageOneInput = inputManager.GetComponent<StageOneInput>();
-        robotAgent = GameObject.FindObjectOfType<Robot>();
+        
+        robotObject.SetActive(false);
 
         if (robotAgent != null)
         {
@@ -66,37 +76,55 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Robot does not exist");
         }
+        // tutorial text
+        atTutorial = true;
+        if (atTutorial == true)
+        {
+            terminalManager.SetActive(false);
+            Debug.Log("at tutorial");
+            
+            DisplayText();
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        // stage 1 will start as soon as start is pressed in the menu and
-        if (atStageOne == false && atStageTwo == false && atStageThree == false)
+       // stage 1 will start as soon as start is pressed in the menu and
+        if (atStageOne == false && atStageTwo == false && atStageThree == false && atTutorial == false)
         {
             atStageOne = true;
             StageOne();
+            if(robotAgent != null)
+            {
+               Debug.Log( "Robot agent active at stage 1");
+            }
         }
 
         //Debug.Log("robot stoppped " + robotAgent.robot.isStopped);
 
         // after the robot has been trapped, move on to stage 2
-        if (robotAgent.isTrapped == true && atStageTwo == false && atStageOne == true) 
+        if (robotAgent != null)
         {
-            Debug.Log("Stage 2 has started ");
+             if (robotAgent.isTrapped == true && atStageTwo == false && atStageOne == true) 
+                    {
+                        Debug.Log("Stage 2 has started ");
 
-            atStageTwo = true;
-            atStageOne = false;
+                        atStageTwo = true;
+                        atStageOne = false;
            
            
-               StageTwo();
+                           StageTwo();
             
+                    }
+            if (robotAgent.robotFixed == true)
+            {
+                Debug.Log("robot is fixed");
+            }
         }
+       
 
-        if(robotAgent.robotFixed == true)
-        {
-            Debug.Log("robot is fixed");
-        }
+       
     }
 
     /**
@@ -105,13 +133,19 @@ public class GameManager : MonoBehaviour
 
     private void StageOne()
     {
+          robotObject.SetActive(true);
+        // activate robot agent reference once tutorial is complete
+        robotAgent = robotObject.GetComponent<Robot>();
+        robotAgent = GameObject.FindObjectOfType<Robot>();
+
         Debug.Log("Stage1 started");
 
         // start displaying text from the text controller
 
         DisplayText();
 
-        robotAgent = robotObject.GetComponent<Robot>();
+      
+       
 
         // level 1
         inputManagerObject.SetActive(true);
@@ -152,13 +186,27 @@ public class GameManager : MonoBehaviour
         Debug.Log("In display text method " );
 
         UITextObject.SetActive(true);
+        
         StartCoroutine(textController.DisplayTextOverTime());
+    }
+    
+
+
+    public bool InTutorial()
+    {
+        if (atTutorial == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
      * Getter for at stage one
      * */
-
     public bool InStageOne()
     {
         if (atStageOne == true)

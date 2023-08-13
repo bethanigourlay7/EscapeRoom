@@ -40,9 +40,6 @@ public class Interpreter : MonoBehaviour
             response.Add("--checkforupdates - checks if robots software version is up to date");
             response.Add("--softwareupdate [insert num]- update robot to most recent version");
             response.Add("--reboot - reboots robot system");
-
- 
-
             return response;
         }
         else if (args[0] == "--robotspec")

@@ -14,20 +14,51 @@ public class Buttons : MonoBehaviour
 
     public GameObject book;
 
+    public GameObject tutorialButton;
+
+    GameManager gameManager;
+
     ShowTerminal showTerminal;
 
     TerminalManager terminalManagerScript;
 
     private void Start()
     {
-        showTerminal = FindAnyObjectByType<ShowTerminal>();
+       // showTerminal = FindAnyObjectByType<ShowTerminal>();
 
+        
+
+        terminalManager.SetActive(true);
         terminalManagerScript = FindObjectOfType<TerminalManager>();
+
+       
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
     {
         EscapeButton();
+    }
+
+
+    public void StartTutorial()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        gameManager.atTutorial = false;
+        Debug.Log("Start tutorial button");
+        
+
+    }
+
+
+    public void ExitTutorial()
+    {
+        gameManager.atTutorial = false;
+        tutorialButton.SetActive(false);
+
+        HelpButton();
     }
 
 
@@ -69,10 +100,6 @@ public class Buttons : MonoBehaviour
      */
     void EscapeButton()
     {
-        
-
-
-        Debug.Log("Clicking terminal manager button");
         if (terminalManager.activeInHierarchy == true)
         {
             if (Input.GetKey(KeyCode.Escape))
@@ -81,7 +108,6 @@ public class Buttons : MonoBehaviour
                terminalManager.SetActive(false);
             Debug.Log("terminal manager set to false");
             return;
-
         }
            
         }
@@ -116,7 +142,6 @@ public class Buttons : MonoBehaviour
         {
             manualButton.SetActive(true);
             Debug.Log("Clicked find manual button");
-
         }
 
     }
@@ -139,7 +164,9 @@ public class Buttons : MonoBehaviour
      */
     public void EasyMode()
     {
-        terminalManagerScript.easyLevel = true;
+
+        PlayerPrefs.SetInt("EasyMode", 1);
+        PlayerPrefs.Save();
     }
 
     /*
@@ -147,7 +174,8 @@ public class Buttons : MonoBehaviour
      */
     public void hardMode()
     {
-        terminalManagerScript.easyLevel = false;
+        PlayerPrefs.SetInt("EasyMode", 0);
+        PlayerPrefs.Save();
     }
 
 

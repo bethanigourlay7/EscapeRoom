@@ -90,6 +90,7 @@ public class Robot : MonoBehaviour
 
     void SpeedTest()
     {
+        Debug.Log("Speed test");
         vMagTotal += robot.velocity.magnitude;
         numOfFrames++;
 
@@ -99,7 +100,7 @@ public class Robot : MonoBehaviour
             avgVMag = vMagTotal / numOfFrames;
             vMagTotal = 0;
             numOfFrames = 0;
-
+            Debug.Log("seconds " + seconds);
             robotSpeedData.Add(seconds, avgVMag);
 
             if (avgVMag == 0)
@@ -122,6 +123,7 @@ public class Robot : MonoBehaviour
 
             if (seconds > 20 && !fileCreated)
             {
+                Debug.Log("creating file");
                 CreateCSVFile();
                 LogData(robotSpeedData);
                 fileCreated = true;

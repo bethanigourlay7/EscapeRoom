@@ -74,7 +74,7 @@ public class InputManager : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("on trigger stay method");
+     
         if (TiltFive.Input.TryGetTrigger(out var triggerValue))
         {
       
@@ -82,7 +82,7 @@ public class InputManager : MonoBehaviour
             {
                 PickUpObject(other.gameObject);
                 ButtonPress(other.gameObject);
-                //PressButton(other.gameObject);
+            
             }
            
 

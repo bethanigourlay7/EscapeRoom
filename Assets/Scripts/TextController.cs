@@ -11,6 +11,10 @@ public class TextController : MonoBehaviour
     private bool textOngoing;
 
     // stages and text
+
+    //tutorial string
+    public string tutorialString = "Hold the wand in your hand and move it around. You should see a pink trail at the tip of the wand, this means it is connected. Once you can see the pink trail, you can interact with objects in the scene. Point the wand at the cube and press the trigger to pick it up. Once you are comfortable with the feel of the wand, press play to start. ";
+
     // start of game
     public string startText = "Hi user, your smart home robot appears to be malfunctioning and is not responding to commands. Find the manual to see instructions on how to fix the robot. Hit help to open and close this windoww";
 
@@ -31,6 +35,11 @@ public class TextController : MonoBehaviour
         myString = uiText.text; // Get the current text in the TMP_Text component
         uiText.text = ""; // Clear the text
         gameManager = FindAnyObjectByType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.Log("Game mana not exist");
+        }
+        
       
     }
 
@@ -38,8 +47,6 @@ public class TextController : MonoBehaviour
     {
         uiText.text = "";
         string text = this.CurrentString();
-        Debug.Log("The text in the ui is " + uiText.text);
-        
         Debug.Log("The text in the text variable is " +text);
         textOngoing = true;
         for (int i = 0; i < text.Length; i++)
@@ -54,10 +61,16 @@ public class TextController : MonoBehaviour
     {
         string returnString;
         returnString = "";
-        if (gameManager.InStageOne())
+        if (gameManager.InTutorial())
         {
+            returnString = tutorialString;
+        }
+        else if (gameManager.InStageOne())
+        {
+
             if (gameManager.robotAgent.robot.isStopped == false)
             {
+                
                 returnString = startText;
             }
            

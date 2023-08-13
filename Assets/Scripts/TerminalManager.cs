@@ -25,7 +25,16 @@ public class TerminalManager : MonoBehaviour
 
         interpreter = GetComponent<Interpreter>();
 
-
+        if (PlayerPrefs.GetInt("EasyMode", 0) == 1)
+        {
+          
+            easyLevel = true;
+        }
+        else if(PlayerPrefs.GetInt("EasyMode", 0) == 0)
+        {
+           
+            easyLevel = false;
+        }
     }
 
     private void OnGUI()
