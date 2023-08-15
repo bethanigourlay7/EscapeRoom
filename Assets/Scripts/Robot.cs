@@ -25,6 +25,8 @@ public class Robot : MonoBehaviour
 
     public bool isTrapped = false;
 
+   
+
     public string beepBoop = "boop beep beep";
 
     // diagnostic variables, for use in the the Interpreter script when robot is being fixed
@@ -56,7 +58,17 @@ public class Robot : MonoBehaviour
 
     void Update()
     {
-        CheckForRandomMovement();
+        /* if(GameManager.InStageThree() == true)
+         {
+
+         }
+         else
+         {*/
+        //CheckForRandomMovement();
+        //   }
+        Freestyle();
+
+        
         if (testRobotSpeed)
         {
             SpeedTest();
@@ -130,7 +142,22 @@ public class Robot : MonoBehaviour
             }
         }
     }
-
+    /*
+     * Freestyle mode
+     */
+    public void Freestyle()
+    {
+        if (TiltFive.Input.TryGetStickTilt(out var joyStickValue))
+        {
+            animator.SetBool("Walk_Anim", true);
+            robot.transform.Translate(new Vector3(joyStickValue.x, 0, joyStickValue.y) * 4 * Time.deltaTime);
+            
+            if (robot.velocity.magnitude == 0)
+            {
+                animator.SetBool("Walk_Anim", false);
+            }
+        }
+    }
     void CreateCSVFile()
     {
         string headerRow = "Second,VMagAvg\n";

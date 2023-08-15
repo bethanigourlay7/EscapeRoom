@@ -8,6 +8,8 @@ public class Buttons : MonoBehaviour
 
     public GameObject UITextObject;
 
+    public GameObject terminalButton;
+
     public GameObject terminalManager;
 
     public GameObject manualButton;
@@ -18,17 +20,19 @@ public class Buttons : MonoBehaviour
 
     GameManager gameManager;
 
+    TextController textController;
+
     ShowTerminal showTerminal;
 
     TerminalManager terminalManagerScript;
 
     private void Start()
     {
-       // showTerminal = FindAnyObjectByType<ShowTerminal>();
+        // showTerminal = FindAnyObjectByType<ShowTerminal>();
 
-        
 
-        terminalManager.SetActive(true);
+        textController = FindObjectOfType<TextController>();
+        //terminalManager.SetActive(true);
         terminalManagerScript = FindObjectOfType<TerminalManager>();
 
        
@@ -92,6 +96,13 @@ public class Buttons : MonoBehaviour
        
     }
 
+    public void RemoteControl()
+    {
+        terminalButton.SetActive(true);
+        gameManager.remoteControlFound = true;
+        Debug.Log("Remote found");
+    }
+
 
     /**
      * Only available if terminal is active. This turns off the raycast so only the keyboard user can type
@@ -141,9 +152,18 @@ public class Buttons : MonoBehaviour
         if(manualButton.activeInHierarchy == false)
         {
             manualButton.SetActive(true);
+
             Debug.Log("Clicked find manual button");
+
+            StopAllCoroutines();
+            StartCoroutine(textController.DisplayTextOverTime(textController.remoteFounf));
         }
 
+    }
+
+    public void test()
+    {
+        Debug.Log("Test button");
     }
 
     public void ManualButton()

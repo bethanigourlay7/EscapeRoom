@@ -9,23 +9,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_Name
-      value: plant3 Variant
+      value: Plant3PU
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
+      propertyPath: m_TagString
+      value: PickUp
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.0015702248
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.07235885
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.14567828
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33,15 +49,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -65,22 +81,37 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2a8e727a31855054aab9fe749c18d7ed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
---- !u!1 &4143664204994331985 stripped
+--- !u!1 &4143664204994331989 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
   m_PrefabInstance: {fileID: 4143664204994429937}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1863005540
-MeshCollider:
+--- !u!54 &110568544
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4143664204994331985}
+  m_GameObject: {fileID: 4143664204994331989}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &110568545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143664204994331989}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 8160b82f1f47c184896180b907d2f21f, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.6381273, y: 0.56656295, z: 0.33002108}
+  m_Center: {x: -0.04561186, y: -0.2167186, z: 2.1526656}

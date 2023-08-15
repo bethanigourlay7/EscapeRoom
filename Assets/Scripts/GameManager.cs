@@ -47,10 +47,10 @@ public class GameManager : MonoBehaviour
     public bool atTutorial = true; 
     private bool atStageOne = false;
     private bool atStageTwo = false;
-    private bool atStageThree = false;
+   [SerializeField] public static bool atStageThree = false;
 
- 
 
+    public bool remoteControlFound = false;
    
 
     // Start is called before the first frame update
@@ -90,6 +90,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        /*
+        if(remoteControlFound != true && terminalManager.activeInHierarchy == true)
+        {
+            terminalManager.SetActive(false);
+        }
+        */
        // stage 1 will start as soon as start is pressed in the menu and
         if (atStageOne == false && atStageTwo == false && atStageThree == false && atTutorial == false)
         {
@@ -106,7 +112,7 @@ public class GameManager : MonoBehaviour
         // after the robot has been trapped, move on to stage 2
         if (robotAgent != null)
         {
-             if (robotAgent.isTrapped == true && atStageTwo == false && atStageOne == true) 
+             if (/*robotAgent.isTrapped*/ remoteControlFound == true && atStageTwo == false && atStageOne == true) 
                     {
                         Debug.Log("Stage 2 has started ");
 
@@ -122,15 +128,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log("robot is fixed");
             }
         }
-       
-
-       
     }
 
     /**
      * Start game
      */
-
     private void StageOne()
     {
           robotObject.SetActive(true);
@@ -143,9 +145,6 @@ public class GameManager : MonoBehaviour
         // start displaying text from the text controller
 
         DisplayText();
-
-      
-       
 
         // level 1
         inputManagerObject.SetActive(true);
@@ -187,7 +186,7 @@ public class GameManager : MonoBehaviour
 
         UITextObject.SetActive(true);
         
-        StartCoroutine(textController.DisplayTextOverTime());
+        StartCoroutine(textController.DisplayTextOverTime(textController.CurrentString()));
     }
     
 
@@ -239,7 +238,7 @@ public class GameManager : MonoBehaviour
  *     Getter for at stage three
  * */
 
-    public bool InStageThree()
+    public static bool InStageThree()
     {
         if (atStageThree == true)
         {
