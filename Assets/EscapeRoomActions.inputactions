@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "New action",
+                    "name": "Press D",
                     "type": "Button",
                     "id": "19f2c0d0-7f4d-4fb8-9732-20e50fe75a17",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Press T",
+                    "type": "Button",
+                    "id": "f3fa30ba-0e10-46e8-906a-55adb7c718af",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -101,11 +110,22 @@
                 {
                     "name": "",
                     "id": "6a6396d1-f4d9-4639-a226-c7d08869802a",
-                    "path": "",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "Press D",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "962d5797-cafd-42dd-bcd6-1291e0e4177e",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "Press T",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

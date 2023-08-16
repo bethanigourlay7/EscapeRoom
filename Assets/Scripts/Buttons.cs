@@ -106,7 +106,6 @@ public class Buttons : MonoBehaviour
 
     public void RemoteControl()
     {
-       terminalButton.SetActive(true);
         gameManager.remoteControlFound = true;
         Debug.Log("Remote found");
     }
@@ -132,6 +131,8 @@ public class Buttons : MonoBehaviour
            
         }
     }
+
+  
     public void OpenCloseTerminal()
     {
 
@@ -191,7 +192,7 @@ public class Buttons : MonoBehaviour
     }
 
     /*
-     * Set to easy mode
+     * Set to easy mode, used in menu
      */
     public void EasyMode()
     {
@@ -201,7 +202,7 @@ public class Buttons : MonoBehaviour
     }
 
     /*
-     * set to hard mode
+     * set to hard mode, used in menu
      */
     public void hardMode()
     {
@@ -237,5 +238,21 @@ public class Buttons : MonoBehaviour
     }
 
 
+    public void OpenCloseUITextOverride()
+    {
+        if (UITextObject.activeInHierarchy)
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                UITextObject.SetActive(false);
+                
+            }
+        }
+    }
+
+    public void LoadTerminalScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
 
 }

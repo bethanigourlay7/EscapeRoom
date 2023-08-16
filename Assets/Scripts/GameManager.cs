@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         {
             wandPointerView.SetActive(false);
         }
-       
+        Debug.Log("In update at tutorial is " + false);
        // stage 1 will start as soon as start is pressed in the menu and
         if (atStageOne == false && atStageTwo == false && atStageThree == false && atTutorial == false)
         {
@@ -133,10 +133,10 @@ public class GameManager : MonoBehaviour
                            StageTwo();
             
                     }
-            if (robotAgent.robotFixed == true)
+           /* if (robotAgent.robotFixed == true)
             {
-                Debug.Log("robot is fixed");
-            }
+               // Debug.Log("robot is fixed");
+            }*/
         }
         if(remoteControlFound && manualFound)
         {
@@ -166,9 +166,7 @@ public class GameManager : MonoBehaviour
 
         // level 1
         inputManagerObject.SetActive(true);
-        // stageOneInput.enabled();
         robotObject.SetActive(true);
-       // terminalManager.SetActive(false);
         environment.SetActive(true);
         // ensure terminal button is not available
         terminalButton.SetActive(false);
@@ -177,7 +175,6 @@ public class GameManager : MonoBehaviour
     /**
      * Occurs after robot is trapped
      */
-
     private void StageTwo()
     {
         // add a text here indicating next stage of game
@@ -188,8 +185,6 @@ public class GameManager : MonoBehaviour
         /*environment.SetActive(false);
         robotObject.SetActive(false);
         UITextObject.SetActive(false);*/
-
-
     }
 
     private void StageThree()

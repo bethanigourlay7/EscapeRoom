@@ -2206,6 +2206,120 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ca3a07545fabc41a8db7c3e90e6b22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &464407848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464407826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a11f2798d2a2822458aeb3ecda831e21, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87d4b7a8-f011-4dcd-a76e-327b68739fb0
+    m_ActionName: Player/FlipPage
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ecea9c26-c9f3-4470-84c7-e9bdb9fdc61f
+    m_ActionName: Player/PressOne
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 19c38211-599c-480b-8554-edadd165dc25
+    m_ActionName: Player/PressTwo
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 464407834}
+        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+        m_MethodName: OpenCloseUITextOverride
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 19f2c0d0-7f4d-4fb8-9732-20e50fe75a17
+    m_ActionName: Player/New action[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c66c244a-63d9-4c79-a7d8-eaa9e6db1222
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8c50aff0-75e4-4884-8f94-9217a8c2a318
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f879fb52-91fc-4958-9992-ccdb6a5775de
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ebaad042-0ac8-455c-8778-c9d919d587e0
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6e552d3e-0921-44aa-af05-d67c870b7b96
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2b4426d-3855-4b0e-9457-da07ad5f6ac4
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b46fc11c-81dd-4cac-811e-bd88522d964a
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4e1f68e8-6a2a-45b1-aba7-e0d57cc4bef4
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1c11a30e-308c-4916-835c-3c0ee00761a1
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9631510c-8b5b-4e3e-9b3c-0dc07595ad05
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 464407834}
+        m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+        m_MethodName: ExitTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f3fa30ba-0e10-46e8-906a-55adb7c718af
+    m_ActionName: Player/Press T[/Keyboard/t]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!20 &476324907 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5096850156648964928, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
@@ -11277,7 +11391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 770934943319219370, guid: 8c1e58f368605ad4c8eb90088d2717e9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 770934943319219371, guid: 8c1e58f368605ad4c8eb90088d2717e9, type: 3}
       propertyPath: m_RootOrder
@@ -11761,9 +11875,15 @@ PrefabInstance:
         window.
       objectReference: {fileID: 0}
     - target: {fileID: 9205950805093325540, guid: 0bf55e8a1c387744c968b56fa07bfa82, type: 3}
+      propertyPath: manualFound
+      value: Well done, you have found the manual. If you haven't found the remote
+        control yet it should be around the kitchen counter.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205950805093325540, guid: 0bf55e8a1c387744c968b56fa07bfa82, type: 3}
       propertyPath: remoteFounf
-      value: Well done, now you have found the remote control, see the manual for
-        next steps. Press the trigger on the help button to open and close this window.
+      value: Well done, now you have found the remote control, if you haven't found
+        the manual yet remember it is RED. Press the trigger on the help button to
+        open and close this window.
       objectReference: {fileID: 0}
     - target: {fileID: 9205950805093325540, guid: 0bf55e8a1c387744c968b56fa07bfa82, type: 3}
       propertyPath: findManualText

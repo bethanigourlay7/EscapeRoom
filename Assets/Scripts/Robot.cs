@@ -58,17 +58,17 @@ public class Robot : MonoBehaviour
 
     void Update()
     {
-        /* if(GameManager.InStageThree() == true)
-          {
-             Freestyle();
-          }
-          else
-          {
-         //CheckForRandomMovement();
-           }
-        */
+        if (GameManager.InStageThree() == true)
+        {
+            Freestyle();
+        }
+        else
+        {
+            CheckForRandomMovement();
+        }
 
-        Freestyle();
+
+        //Freestyle();
 
         if (testRobotSpeed)
         {
@@ -152,10 +152,12 @@ public class Robot : MonoBehaviour
         {
             animator.SetBool("Walk_Anim", true);
             robot.transform.Translate(new Vector3(joyStickValue.x, 0, joyStickValue.y) * 4 * Time.deltaTime);
-            
-            if (robot.velocity.magnitude == 0)
+            Debug.Log("moving");
+            if (robot.velocity.magnitude*100 == 0)
             {
+                
                 animator.SetBool("Walk_Anim", false);
+                Debug.Log("not moving. vmag is " + robot.velocity*100);
             }
         }
     }
