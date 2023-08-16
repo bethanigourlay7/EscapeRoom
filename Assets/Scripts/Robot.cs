@@ -59,16 +59,17 @@ public class Robot : MonoBehaviour
     void Update()
     {
         /* if(GameManager.InStageThree() == true)
-         {
+          {
+             Freestyle();
+          }
+          else
+          {
+         //CheckForRandomMovement();
+           }
+        */
 
-         }
-         else
-         {*/
-        //CheckForRandomMovement();
-        //   }
         Freestyle();
 
-        
         if (testRobotSpeed)
         {
             SpeedTest();

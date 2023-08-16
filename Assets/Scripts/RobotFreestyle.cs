@@ -24,12 +24,13 @@ public class RobotFreestyle : MonoBehaviour
     public void Freestyle()
     {
         if (TiltFive.Input.TryGetStickTilt(out var joyStickValue))
-        {
-            
+        { 
             robot.transform.Translate(new Vector3(joyStickValue.x, 0, joyStickValue.y) * moveSpeed * Time.deltaTime);
             animator.SetBool("Walk_Anim", true);
+            Debug.Log("moving");
             if (rigidBody.velocity != Vector3.zero)
             {
+                Debug.Log("Not moving");
                 animator.SetBool("Walk_Anim", false);
             }
         }

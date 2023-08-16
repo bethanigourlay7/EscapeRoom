@@ -20,6 +20,7 @@ public class ShowTerminal : MonoBehaviour
         robot = GameObject.FindObjectOfType<Robot>();
         
         terminalDisplayed = false;
+        DisplayTerminal();
 
     }
     /*

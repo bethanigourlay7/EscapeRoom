@@ -1165,5 +1165,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 918423333184196318, guid: 801b6cce1d61c8a40af1fc4e4780dde6, type: 3}
+      propertyPath: bookPages.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 801b6cce1d61c8a40af1fc4e4780dde6, type: 3}

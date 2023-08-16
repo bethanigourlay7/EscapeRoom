@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject inputManagerObject;
@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
      * Access scripting variables
      */
     public Robot robotAgent;
+
+    public GameObject wandPointerView;
     /*
      * 
      * !!!!!!
@@ -51,12 +53,15 @@ public class GameManager : MonoBehaviour
 
 
     public bool remoteControlFound = false;
+    public bool manualFound = false;
    
 
     // Start is called before the first frame update
     private void Start()
 
     {
+
+       
       
         //setting everything to false at start of game
         terminalManager.SetActive(false);
@@ -82,8 +87,8 @@ public class GameManager : MonoBehaviour
         {
             terminalManager.SetActive(false);
             Debug.Log("at tutorial");
-            
-            DisplayText();
+          
+            StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
         }
     }
 
@@ -96,6 +101,11 @@ public class GameManager : MonoBehaviour
             terminalManager.SetActive(false);
         }
         */
+        if(terminalManager.activeInHierarchy == true)
+        {
+            wandPointerView.SetActive(false);
+        }
+       
        // stage 1 will start as soon as start is pressed in the menu and
         if (atStageOne == false && atStageTwo == false && atStageThree == false && atTutorial == false)
         {
@@ -127,6 +137,14 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("robot is fixed");
             }
+        }
+        if(remoteControlFound && manualFound)
+        {
+
+        }
+        if(atStageTwo == true && robotAgent.robotFixed == true)
+        {
+            atStageThree = true;
         }
     }
 
@@ -167,11 +185,16 @@ public class GameManager : MonoBehaviour
         DisplayText();
        //     terminalManager.SetActive(true);
              terminalButton.SetActive(true);
-            /*environment.SetActive(false);
-            robotObject.SetActive(false);
-            UITextObject.SetActive(false);*/
-        
-        
+        /*environment.SetActive(false);
+        robotObject.SetActive(false);
+        UITextObject.SetActive(false);*/
+
+
+    }
+
+    private void StageThree()
+    {
+        DisplayText();
     }
 
     /*
@@ -187,6 +210,7 @@ public class GameManager : MonoBehaviour
         UITextObject.SetActive(true);
         
         StartCoroutine(textController.DisplayTextOverTime(textController.CurrentString()));
+        Debug.Log("current string" + textController.CurrentString());
     }
     
 
@@ -233,7 +257,11 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
-
+    
+    public void StageTwoScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
     /**
  *     Getter for at stage three
  * */

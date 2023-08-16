@@ -12,13 +12,21 @@ public class Buttons : MonoBehaviour
 
     public GameObject terminalManager;
 
+    public GameObject terminalUI;
+
     public GameObject manualButton;
+
+    public GameObject manual;
 
     public GameObject book;
 
     public GameObject tutorialButton;
 
+    // Wand pointer view object needs to be disabled when terminal is opened so mouse can be used
+    public GameObject wandPointerView;
+
     GameManager gameManager;
+
 
     TextController textController;
 
@@ -98,7 +106,7 @@ public class Buttons : MonoBehaviour
 
     public void RemoteControl()
     {
-        terminalButton.SetActive(true);
+       terminalButton.SetActive(true);
         gameManager.remoteControlFound = true;
         Debug.Log("Remote found");
     }
@@ -115,6 +123,7 @@ public class Buttons : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Escape))
         {
+                wandPointerView.SetActive(true);
             Debug.Log("Escape key pressed");
                terminalManager.SetActive(false);
             Debug.Log("terminal manager set to false");
@@ -131,12 +140,14 @@ public class Buttons : MonoBehaviour
         if (terminalManager.activeInHierarchy ==true)
         {
             terminalManager.SetActive(false);
+           // wandPointerView.SetActive(true);
             Debug.Log("terminal manager set to false");
             return;
         }
         if(terminalManager.activeInHierarchy == false)
         {
             terminalManager.SetActive(true);
+            //wandPointerView.SetActive(false);
             foreach (Transform child in terminalManager.transform)
             {
 
@@ -154,9 +165,9 @@ public class Buttons : MonoBehaviour
             manualButton.SetActive(true);
 
             Debug.Log("Clicked find manual button");
-
+          gameManager.manualFound = true;
             StopAllCoroutines();
-            StartCoroutine(textController.DisplayTextOverTime(textController.remoteFounf));
+            StartCoroutine(textController.DisplayTextOverTime(textController.manualFound));
         }
 
     }
@@ -198,6 +209,32 @@ public class Buttons : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+
+    public void TerminalManualToggle()
+    {
+        if (manual.activeInHierarchy)
+        {
+            manual.SetActive(false);
+
+        }
+    }
+
+
+    public void OpenCloseBookXButton()
+    {
+        Debug.Log("X pressed");
+        if (book.activeInHierarchy)
+        {
+            book.SetActive(false);
+            terminalManager.SetActive(true);
+            terminalUI.SetActive(true);
+            return;
+        } else if (terminalManager.activeInHierarchy)
+        {
+            book.SetActive(true);
+            terminalManager.SetActive(false);
+        }
+    }
 
 
 
