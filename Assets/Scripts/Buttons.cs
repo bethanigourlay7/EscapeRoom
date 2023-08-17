@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.UI;
+
 public class Buttons : MonoBehaviour
 {
 
@@ -21,6 +23,10 @@ public class Buttons : MonoBehaviour
     public GameObject book;
 
     public GameObject tutorialButton;
+
+
+
+    
 
     // Wand pointer view object needs to be disabled when terminal is opened so mouse can be used
     public GameObject wandPointerView;
@@ -164,9 +170,10 @@ public class Buttons : MonoBehaviour
         if(manualButton.activeInHierarchy == false)
         {
             manualButton.SetActive(true);
-
+           
             Debug.Log("Clicked find manual button");
           gameManager.manualFound = true;
+            UITextObject.SetActive(true);
             StopAllCoroutines();
             StartCoroutine(textController.DisplayTextOverTime(textController.manualFound));
         }
@@ -252,7 +259,18 @@ public class Buttons : MonoBehaviour
 
     public void LoadTerminalScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        gameManager.robotAgent.terminalScene = true;
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);    
     }
+
+    public void LoadFreeStyle()
+    {
+        // variable to pass through
+        PlayerPrefs.SetInt("Freestyle", 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
 
 }

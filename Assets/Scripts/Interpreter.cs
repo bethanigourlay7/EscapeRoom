@@ -14,9 +14,10 @@ public class Interpreter : MonoBehaviour
     List<string> response = new List<string>();
 
     public Robot robot;
-    
-  
 
+    // variables used in easy mode
+    int count = 0;
+    bool started;
 
     // variables to check robot spec against 
     string latestSoftwareVersion = "3.1.3";
@@ -34,7 +35,6 @@ public class Interpreter : MonoBehaviour
         if (args[0] == "--help")
         {
             // return reponse
-            response.Add("If you want to use the terminal type, 'boop'");
             response.Add("--robotspec - view all robot specifications ");
             response.Add("--calibratesensorinfrared [insert num] - calibrates the sensor to specified number ");
             response.Add("--setcapacitor [insert num] - sets capacitor to specified number");
@@ -146,8 +146,6 @@ public class Interpreter : MonoBehaviour
         string[] args = userInput.Split();
         string[] beepBoopArgs = robot.beepBoop.Split();
         int beepBoopCount = beepBoopArgs.Length;
-        int count = 0;
-        bool started = false;
 
         string[] commands = { "beep", "boop", "go" };
 
@@ -167,30 +165,42 @@ public class Interpreter : MonoBehaviour
             response.Add("then if i say beep, you remember your previous answer then say 'boop' like this...");
             response.Add("beep boop");
             response.Add("And so on, type 'go' to start :)");
-            started = true; 
+            started = true;
+            return response;
         }
         
         if (count == 0 && args[0] == "go" && started == true) 
         {
+            
             response.Add("1 " + beepBoopArgs[0]);
             count += 1;
+            return response;
         } else if (count == 1 && args[0] == "beep")
         {
             response.Add("2 " +beepBoopArgs[1]);
             count += 1;
+            return response;
         } else if (count == 2 && args[0] == "beep" && args[1] == "boop")  {
             response.Add("3" + beepBoopArgs[2]);
             count += 1;
+            return response;
         } else if (count == 3 && args[0] == "beep" && args[1] == "boop" && args[2] == "boop")
         {
             response.Add("You've won!");
+            return response;
         } 
         else if(started == true )
         {
             
             started = false;
             response.Add("If you want to use the terminal type, 'boop'");
+            return response;
 
+        }
+        else if(started == false)
+        {
+            response.Add("If you want to use the terminal type, 'boop'");
+            return response;
         }
        
         return response;

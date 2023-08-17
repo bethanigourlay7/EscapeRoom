@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -34,22 +36,31 @@ public class InputManager : MonoBehaviour
     Material mat2;
     Material mat3;
 
+    public InputField targetInputField;
+
     public int speed;
 
-/*    private void Start()
+    string currentSceneName;
+
+    // checking which scene 
+
+    /*    private void Start()
+        {
+            book = FindObjectOfType<Book>();
+        }
+    */
+
+    private void Start()
     {
-        book = FindObjectOfType<Book>();
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
-*/
     void Update()
     {
 
-      
-
         //BookActions();
-             
+       
 
-        if (TiltFive.Input.TryGetTrigger(out var triggerValue))
+            if (TiltFive.Input.TryGetTrigger(out var triggerValue))
         {
             if (triggerValue < 0.5f && carriedObject != null)
             {
@@ -174,5 +185,13 @@ public class InputManager : MonoBehaviour
 
             ExecuteEvents.Execute(data.selectedObject, data, ExecuteEvents.submitHandler);
         }
+    }
+
+    // to focus on the input field without the mouse
+    public void FocusInputField()
+    {
+        EventSystem.current.SetSelectedGameObject(targetInputField.gameObject, null);
+        // Simulate a click to open the keyboard on touch devices
+        targetInputField.OnPointerClick(new PointerEventData(EventSystem.current)); 
     }
 }

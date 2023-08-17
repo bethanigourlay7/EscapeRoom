@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "XR Y",
+                    "type": "Button",
+                    "id": "b6f735ed-a092-4c41-aaf0-91952ca406c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -126,6 +135,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
                     "action": "Press T",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37069d46-bf5e-49b7-86ac-715c38c2f09f",
+                    "path": "<WandDevice>/Y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Keyboard&Mouse;Touch;Joystick;XR",
+                    "action": "XR Y",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63e3d345-3ea7-4ca5-96a0-739dfa3224e1",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "XR Y",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

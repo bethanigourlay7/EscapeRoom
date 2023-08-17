@@ -1356,7 +1356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1083891704
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1623,6 +1623,7 @@ MonoBehaviour:
       m_Calls: []
   btnRight: {fileID: 0}
   btnLeft: {fileID: 0}
+  targetInputField: {fileID: 0}
   speed: 0
 --- !u!4 &1446310078
 Transform:
@@ -1671,7 +1672,9 @@ MonoBehaviour:
   UITextObject: {fileID: 0}
   terminalButton: {fileID: 0}
   terminalManager: {fileID: 0}
+  terminalUI: {fileID: 0}
   manualButton: {fileID: 0}
+  manual: {fileID: 0}
   book: {fileID: 0}
   tutorialButton: {fileID: 0}
   wandPointerView: {fileID: 0}

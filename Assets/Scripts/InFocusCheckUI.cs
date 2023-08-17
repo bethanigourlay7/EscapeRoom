@@ -22,7 +22,7 @@ public class InFocusCheckUI : MonoBehaviour
 			float b = 50f / 255f; // Blue
 
 			mainInputField.GetComponent<Image>().color = new Color(r, g, b);
-			Debug.Log("Input in focus");
+			//Debug.Log("Input in focus");
 		}
 	
 	}

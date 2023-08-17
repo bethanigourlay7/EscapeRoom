@@ -42,9 +42,7 @@ public class TextController : MonoBehaviour
         if (gameManager == null)
         {
             Debug.Log("Game mana not exist");
-        }
-        
-      
+        } 
     }
 
     public IEnumerator DisplayTextOverTime(string currentString)

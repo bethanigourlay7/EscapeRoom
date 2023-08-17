@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 public class Robot : MonoBehaviour
 {
     public NavMeshAgent robot;
@@ -37,7 +38,13 @@ public class Robot : MonoBehaviour
     public String infraredSensitivity { get;  set; }
 
     // boolean to check if robot has been fixed
-    public bool robotFixed = false; 
+    public bool robotFixed = false;
+
+
+    public bool terminalScene = false;
+
+    // to check which scene is currently active
+    string currentSceneName;
 
 
     void Start()
@@ -53,19 +60,36 @@ public class Robot : MonoBehaviour
         capacitorRatingFull = "3000";
         infraredSensitivity = "400";
 
-       
+        currentSceneName = SceneManager.GetActiveScene().name;
+
+
     }
 
     void Update()
     {
-        if (GameManager.InStageThree() == true)
+
+        if (currentSceneName != "TerminalCheck")
         {
-            Freestyle();
-        }
-        else
+            if (GameManager.InStageThree() == true)
+            {
+                Freestyle();
+            }
+            else if (terminalScene)
+            {
+                return;
+            }
+            else
+            {
+                Freestyle();
+                //CheckForRandomMovement();
+            }
+            
+        }else
         {
-            CheckForRandomMovement();
+            return;
         }
+    
+       
 
 
         //Freestyle();

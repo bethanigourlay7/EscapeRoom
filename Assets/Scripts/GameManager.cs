@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
      * Button to open and close the manual, available throughout the whole game
      */
     public GameObject manualButton;
+
+    /*
+     * Activated after both the remote and manual have been found
+     */
+    public GameObject SceneChangeButton;
     /*
      * !!!!!!!!!!!!!!!!!!!!!!!!!
      */
@@ -38,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject UITextObject;
     public GameObject UITextDisplay;
-
    
 
     // text controller to display relevant information to user
@@ -46,7 +50,7 @@ public class GameManager : MonoBehaviour
     private TextController textController;
 
     // variables to show what stage the game is in
-    public bool atTutorial = true; 
+    public bool atTutorial = true;
     private bool atStageOne = false;
     private bool atStageTwo = false;
    [SerializeField] public static bool atStageThree = false;
@@ -85,7 +89,7 @@ public class GameManager : MonoBehaviour
         atTutorial = true;
         if (atTutorial == true)
         {
-            terminalManager.SetActive(false);
+           // terminalManager.SetActive(false);
             Debug.Log("at tutorial");
           
             StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
@@ -105,7 +109,7 @@ public class GameManager : MonoBehaviour
         {
             wandPointerView.SetActive(false);
         }
-        Debug.Log("In update at tutorial is " + false);
+        Debug.Log("In update at tutorial is " + atTutorial);
        // stage 1 will start as soon as start is pressed in the menu and
         if (atStageOne == false && atStageTwo == false && atStageThree == false && atTutorial == false)
         {
@@ -129,7 +133,6 @@ public class GameManager : MonoBehaviour
                         atStageTwo = true;
                         atStageOne = false;
            
-           
                            StageTwo();
             
                     }
@@ -138,9 +141,12 @@ public class GameManager : MonoBehaviour
                // Debug.Log("robot is fixed");
             }*/
         }
-        if(remoteControlFound && manualFound)
+        if(remoteControlFound && manualFound &&SceneChangeButton.activeInHierarchy == false)
         {
-
+            StopAllCoroutines();
+            StartCoroutine(textController.DisplayTextOverTime("Now you can access the robots terminal, click next stage to move on"));
+           
+            SceneChangeButton.SetActive(true);
         }
         if(atStageTwo == true && robotAgent.robotFixed == true)
         {
