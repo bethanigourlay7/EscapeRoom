@@ -890,7 +890,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3395015452699888424, guid: 328f473d8de1ac341a3cfa89a291c52a, type: 3}
       propertyPath: m_Text
-      value: sdf
+      value: Type commands in here
       objectReference: {fileID: 0}
     - target: {fileID: 3395015452699888426, guid: 328f473d8de1ac341a3cfa89a291c52a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1053,7 +1053,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3048131759945183876, guid: 54dea9975cad5ff40868c61fd7f7f9ab, type: 3}
       propertyPath: m_Text
-      value: 'Response text
+      value: 'After typing in a command, the computer will let you know if it worked
 
 '
       objectReference: {fileID: 0}

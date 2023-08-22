@@ -63,10 +63,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
 
-    {
-
-       
-      
+    {      
         //setting everything to false at start of game
         terminalManager.SetActive(false);
        

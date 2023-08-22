@@ -24,16 +24,14 @@ public class Buttons : MonoBehaviour
 
     public GameObject tutorialButton;
 
-
-
-    
+    public GameObject helpButton;
 
     // Wand pointer view object needs to be disabled when terminal is opened so mouse can be used
     public GameObject wandPointerView;
 
     GameManager gameManager;
 
-
+  
     TextController textController;
 
     ShowTerminal showTerminal;
@@ -66,7 +64,6 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         gameManager.atTutorial = false;
         Debug.Log("Start tutorial button");
-        
 
     }
 
@@ -271,6 +268,6 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-
+   
 
 }

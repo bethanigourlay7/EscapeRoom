@@ -21,8 +21,8 @@ public class Interpreter : MonoBehaviour
 
     // variables to check robot spec against 
     string latestSoftwareVersion = "3.1.3";
-    string capacitorTarget = "2400";
-    string sensorTarget = "850";
+    string energyTarget = "6";
+    string eyesightTarget = "8";
 
 
     public List<string> Interpret(string userInput)
@@ -32,43 +32,43 @@ public class Interpreter : MonoBehaviour
 
         string[] args = userInput.Split();
 
-        if (args[0] == "--help")
+        if (args[0] == "help")
         {
             // return reponse
-            response.Add("--robotspec - view all robot specifications ");
-            response.Add("--calibratesensorinfrared [insert num] - calibrates the sensor to specified number ");
-            response.Add("--setcapacitor [insert num] - sets capacitor to specified number");
-            response.Add("--checkforupdates - checks if robots software version is up to date");
-            response.Add("--softwareupdate - update robot to most recent version");
-            response.Add("--reboot - reboots robot system");
+            response.Add("robotdetails - see all about me ");
+            response.Add("seteyesight [1-10] - if you type in seteyesight [insert number] you will make my eyesight sharper or blurrier");
+            response.Add("setenergy [1-10] - if you type in setenergy [insert number] you will make me use more or less power");
+            response.Add("amiupdated - see if I'm updated");
+            response.Add("update - update robot to most recent version");
+            response.Add("sleep - robot takes a nap");
             return response;
         }
-        else if (args[0] == "--robotspec")
+        else if (args[0] == "robotdetails")
         {
             response.Add("Robot spec");
             response.Add("Model : " + robot.robotModel);
             response.Add("Current software version : " + robot.softwareVersion);
-            response.Add("Robots Max Capacitor rating : " + robot.capacitorRatingFull);
-            response.Add("Robots current capacitor rating : " + robot.capacitorRating);
-            response.Add("Robots infrared sensitivity : " + robot.infraredSensitivity);
+            response.Add("Robots Maximum Energy Level : " + robot.maxEnergyLevel);
+            response.Add("Robots current energy level : " + robot.energyLevel);
+            response.Add("Robots eyesight : " + robot.eyesight);
 
             return response;
         }
-        else if (args[0] == "--calibratesensorinfrared")
+        else if (args[0] == "seteyesight")
         {
             Debug.Log(args[1]);
-            robot.infraredSensitivity = args[1];
-            response.Add("infrared sensitivity recalibrated to " + robot.infraredSensitivity);
+            robot.eyesight = args[1];
+            response.Add("robots eyesight set to " + robot.eyesight);
             return response;
 
         }
-        else if (args[0] == "--setcapacitor")
+        else if (args[0] == "setenergy")
         {
-            robot.capacitorRating = args[1];
-            response.Add("Capacitor rating set to " + robot.capacitorRating);
+            robot.energyLevel = args[1];
+            response.Add("robot energy level set to " + robot.energyLevel);
             return response;
         }
-        else if (args[0] == "--checkforupdates")
+        else if (args[0] == "amiupdated")
         {
             if (robot.softwareVersion == latestSoftwareVersion)
             {
@@ -80,7 +80,7 @@ public class Interpreter : MonoBehaviour
             }
             return response;
         }
-        else if (args[0] == "--softwareupdate")
+        else if (args[0] == "update")
         {
             /*
             if(args[1].Length > 0)
@@ -114,14 +114,14 @@ public class Interpreter : MonoBehaviour
             
             return response;
         }
-        else if (args[0] == "--reboot")
+        else if (args[0] == "reboot")
         {
             response.Add("Robot systems reset");
             response.Add("Model : " + robot.robotModel);
             response.Add("Current software version : " + robot.softwareVersion);
-            response.Add("Robots Max Capacitor rating : " + robot.capacitorRatingFull);
-            response.Add("Robots current capacitor rating : " + robot.capacitorRating);
-            response.Add("Robots infrared sensitivity : " + robot.infraredSensitivity);
+            response.Add("Robots Max Capacitor rating : " + robot.maxEnergyLevel);
+            response.Add("Robots current capacitor rating : " + robot.energyLevel);
+            response.Add("Robots infrared sensitivity : " + robot.eyesight);
 
             response.Add(robotFixCheckHard());
 
@@ -130,7 +130,7 @@ public class Interpreter : MonoBehaviour
         }
         else
         {
-            response.Add("Command not recognised. Type --help for a list of commands.");
+            response.Add("Command not recognised. Type help for a list of commands.");
 
             return response;
         }
@@ -175,23 +175,22 @@ public class Interpreter : MonoBehaviour
             response.Add("1 " + beepBoopArgs[0]);
             count += 1;
             return response;
-        } else if (count == 1 && args[0] == "beep")
+        } else if (count == 1 && args[0] == "boop")
         {
             response.Add("2 " +beepBoopArgs[1]);
             count += 1;
             return response;
-        } else if (count == 2 && args[0] == "beep" && args[1] == "boop")  {
+        } else if (count == 2 && args[0] == "boop" && args[1] == "beep")  {
             response.Add("3" + beepBoopArgs[2]);
             count += 1;
             return response;
-        } else if (count == 3 && args[0] == "beep" && args[1] == "boop" && args[2] == "boop")
+        } else if (count == 3 && args[0] == "boop" && args[1] == "beep" && args[2] == "beep")
         {
             response.Add("You've won!");
             return response;
         } 
         else if(started == true )
         {
-            
             started = false;
             response.Add("If you want to use the terminal type, 'boop'");
             return response;
@@ -210,7 +209,7 @@ public class Interpreter : MonoBehaviour
     {
 
         string response;
-        if(robot.softwareVersion == latestSoftwareVersion && robot.capacitorRating == capacitorTarget && robot.infraredSensitivity == sensorTarget)
+        if(robot.softwareVersion == latestSoftwareVersion && robot.energyLevel == energyTarget && robot.eyesight == eyesightTarget)
         {
             response = ("Sentience rectification protocol completed");
             robot.robotFixed = true; 

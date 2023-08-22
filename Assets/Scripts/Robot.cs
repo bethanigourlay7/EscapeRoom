@@ -33,9 +33,9 @@ public class Robot : MonoBehaviour
     // diagnostic variables, for use in the the Interpreter script when robot is being fixed
     public String robotModel { get;  set; }
     public String softwareVersion { get; set; }
-    public String capacitorRatingFull { get;  set; }
-    public String capacitorRating { get; set; }
-    public String infraredSensitivity { get;  set; }
+    public String maxEnergyLevel { get;  set; }
+    public String energyLevel { get; set; }
+    public String eyesight { get;  set; }
 
     // boolean to check if robot has been fixed
     public bool robotFixed = false;
@@ -45,7 +45,6 @@ public class Robot : MonoBehaviour
 
     // to check which scene is currently active
     string currentSceneName;
-
 
     void Start()
     {
@@ -57,8 +56,9 @@ public class Robot : MonoBehaviour
         // set robot diagnostic variables 
         robotModel = "123456";
         softwareVersion = "3.1.2";
-        capacitorRatingFull = "3000";
-        infraredSensitivity = "400";
+        maxEnergyLevel = "10";
+        energyLevel = "10";
+        eyesight = "3";
 
         currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -80,8 +80,8 @@ public class Robot : MonoBehaviour
             }
             else
             {
-                Freestyle();
-                //CheckForRandomMovement();
+                //Freestyle();
+                CheckForRandomMovement();
             }
             
         }else

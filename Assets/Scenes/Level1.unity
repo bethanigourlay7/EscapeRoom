@@ -299,6 +299,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pickUp
       objectReference: {fileID: 0}
+    - target: {fileID: 8796450703170118176, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
 --- !u!1 &47104649
@@ -2320,6 +2324,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f3fa30ba-0e10-46e8-906a-55adb7c718af
     m_ActionName: Player/Press T[/Keyboard/t]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b6f735ed-a092-4c41-aaf0-91952ca406c0
+    m_ActionName: Player/XR Y[/Keyboard/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2456,6 +2464,10 @@ PrefabInstance:
     - target: {fileID: 636249644358284842, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636249645138677924, guid: a3da9371641fc774480a57992cefe156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 636249645138677924, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2695,6 +2707,10 @@ PrefabInstance:
     - target: {fileID: 1000013364924378, guid: 8fed59826dff2f6499b50aac8a6c59fc, type: 3}
       propertyPath: m_Name
       value: MixCast Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013364924378, guid: 8fed59826dff2f6499b50aac8a6c59fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012727140090, guid: 8fed59826dff2f6499b50aac8a6c59fc, type: 3}
       propertyPath: m_RootOrder
@@ -3980,7 +3996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &795480778
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4497,6 +4513,10 @@ PrefabInstance:
     - target: {fileID: 8796450703170118176, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
       propertyPath: m_Name
       value: pickUp (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8796450703170118176, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8796450703170118176, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5340,6 +5360,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 76.461
       objectReference: {fileID: 0}
+    - target: {fileID: 5096850156648964934, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 6132178175923897642, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -6076,6 +6100,10 @@ PrefabInstance:
       value: pickUp (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8796450703170118176, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8796450703170118176, guid: c34a51c39a83e324089b3e93fba927d6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -6446,6 +6474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RemoteControl
       objectReference: {fileID: 0}
+    - target: {fileID: 5560905291789515636, guid: 4b658ae02ca4e154f80cea2d74db1ef1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b658ae02ca4e154f80cea2d74db1ef1, type: 3}
 --- !u!1 &1132540610 stripped
@@ -6558,7 +6590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1172794529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6835,7 +6867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636249644358284816, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 636249644358284817, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_Size.z
@@ -6967,7 +6999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636249645138677926, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 636249645211776036, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_text
@@ -11082,7 +11114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636249644358284816, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 636249644358284817, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_Size.z
@@ -11214,7 +11246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636249645138677926, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 636249645211776036, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_text
@@ -11513,6 +11545,10 @@ PrefabInstance:
     - target: {fileID: 636249644358284842, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636249645138677924, guid: a3da9371641fc774480a57992cefe156, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 636249645138677924, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12066,7 +12102,7 @@ PrefabInstance:
         trail at the tip of the wand, this means it is connected. Once you can see
         the pink trail, you can interact with objects in the scene. Point the wand
         at the cube and press the trigger to pick it up. Once you are comfortable
-        with the feel of the wand, press Exit Tutorial to start. '
+        with the feel of the wand, press Exit Tutorial with the trigger to start. '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bf55e8a1c387744c968b56fa07bfa82, type: 3}
@@ -12151,7 +12187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4901335180904386210, guid: b18fdcf951f308147be38ea729c51e8c, type: 3}
       propertyPath: skipTrapping10Secs
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b18fdcf951f308147be38ea729c51e8c, type: 3}

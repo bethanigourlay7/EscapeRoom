@@ -97,8 +97,8 @@ public class TextController : MonoBehaviour
     /**
      * Checks if text is ongoing 
      */
-    public bool IsTextOngoing()
+    bool IsCoroutineRunning(Coroutine coroutine)
     {
-        return textOngoing;
+        return coroutine != null;
     }
 }

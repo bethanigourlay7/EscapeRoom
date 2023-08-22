@@ -210,10 +210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TerminalManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5482476047918075867, guid: 457ea14ce8c8a5d489f2c96e6f29ddf1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5482476048388995562, guid: 457ea14ce8c8a5d489f2c96e6f29ddf1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -308,10 +304,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5482476049169608941, guid: 457ea14ce8c8a5d489f2c96e6f29ddf1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5482476049310369952, guid: 457ea14ce8c8a5d489f2c96e6f29ddf1, type: 3}
-      propertyPath: easyLevel
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5482476049310369954, guid: 457ea14ce8c8a5d489f2c96e6f29ddf1, type: 3}
@@ -592,6 +584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 636249644358284816, guid: a3da9371641fc774480a57992cefe156, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 636249644358284821, guid: a3da9371641fc774480a57992cefe156, type: 3}
       propertyPath: m_Camera
       value: 
@@ -799,7 +795,7 @@ GameObject:
   - component: {fileID: 1157876482}
   - component: {fileID: 1157876481}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TerminalHelpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1705,6 +1701,10 @@ PrefabInstance:
     - target: {fileID: 4093091794048966352, guid: b18fdcf951f308147be38ea729c51e8c, type: 3}
       propertyPath: m_Name
       value: robotSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093091794048966352, guid: b18fdcf951f308147be38ea729c51e8c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b18fdcf951f308147be38ea729c51e8c, type: 3}
