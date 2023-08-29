@@ -19,7 +19,15 @@ namespace TiltFiveDemos
 
 
       
-        public GameObject terminalObject; 
+        public GameObject terminalObject;
+
+        /*
+         * Stops 
+         */
+        void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
         private new void Update()
         {
 

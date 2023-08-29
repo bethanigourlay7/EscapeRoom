@@ -26,6 +26,8 @@ public class Buttons : MonoBehaviour
 
     public GameObject helpButton;
 
+    public GameObject Menu;
+
     // Wand pointer view object needs to be disabled when terminal is opened so mouse can be used
     public GameObject wandPointerView;
 
@@ -82,7 +84,11 @@ public class Buttons : MonoBehaviour
     */
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        helpButton.SetActive(true);
+        tutorialButton.SetActive(true);
+        gameManager.Tutorial();
+        Menu.SetActive(false);
     }
 
     public void QuitGame()
@@ -121,25 +127,25 @@ public class Buttons : MonoBehaviour
      */
     void EscapeButton()
     {
-        if (terminalManager.activeInHierarchy == true)
+        if(terminalManager != null)
         {
-            if (Input.GetKey(KeyCode.Escape))
-        {
-                wandPointerView.SetActive(true);
-            Debug.Log("Escape key pressed");
-               terminalManager.SetActive(false);
-            Debug.Log("terminal manager set to false");
-            return;
-        }
+            if (terminalManager.activeInHierarchy == true)
+                {
+                    if (Input.GetKey(KeyCode.Escape))
+                {
+                        wandPointerView.SetActive(true);
+                    Debug.Log("Escape key pressed");
+                        terminalManager.SetActive(false);
+                    Debug.Log("terminal manager set to false");
+                    return;
+                }
            
+                }
         }
+       
     }
-
-  
     public void OpenCloseTerminal()
     {
-
-
         Debug.Log("Clicking terminal manager button");
         if (terminalManager.activeInHierarchy ==true)
         {
@@ -161,7 +167,9 @@ public class Buttons : MonoBehaviour
         }
     }
 
-
+    /*
+     * Not in use, was used to activate the manual button when the manual was found in the scene
+     */
     public void FindManualButton()
     {
         if(manualButton.activeInHierarchy == false)
@@ -182,6 +190,10 @@ public class Buttons : MonoBehaviour
         Debug.Log("Test button");
     }
 
+    /*
+     * 
+     * Activates and deactivates the manual, not in use but was used to 
+     */
     public void ManualButton()
     {
         Debug.Log("Manual button pressed");

@@ -59,6 +59,13 @@ namespace TiltFiveDemos
         /// </summary>
         protected Selectable _currentSelectable = null;
 
+        /*
+         * To stop the wand game object being destroyed in between scenes
+         */
+        private void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
         protected virtual void Start()
         {
             _eventSystem = EventSystem.current; // Find the current event system.
