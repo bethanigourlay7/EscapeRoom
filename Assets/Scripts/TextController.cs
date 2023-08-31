@@ -7,8 +7,9 @@ public class TextController : MonoBehaviour
     public TMP_Text uiText; // Use TMP_Text instead of Text
     public float delay = 0.1f;
     private string myString;
+    public GameObject UITextObject;
 
-    private bool textOngoing;
+   // private bool textOngoing;
 
     // stages and text
 
@@ -25,39 +26,49 @@ public class TextController : MonoBehaviour
 
     //public string robotTrapped = "Well done, now the robot has been trapped, see the manual for next steps. Hit help to open and close this window.";
 
-    public string remoteFounf = "Well done, now you have found the remote control, see the manual for next steps. Press the trigger on the help button to open and close this window.";
+    public string remoteFounf = "Well done, you have found the remote control, now you need to find the RED manual. Press the trigger on the help button to open and close this window.";
 
     public string manualFound = "Well done, you have found the manual";
+
+    public string freeStyleString;
 
     // Game manager to reference what stage the game is in
     GameManager gameManager;
 
-    
-
     void Start()
     {
-        myString = uiText.text; // Get the current text in the TMP_Text component
+       // myString = uiText.text; // Get the current text in the TMP_Text component
         uiText.text = ""; // Clear the text
         gameManager = FindAnyObjectByType<GameManager>();
         if (gameManager == null)
         {
             Debug.Log("Game mana not exist");
-        } 
+        }
+
+        manualFound = "Well done, you have found the manual, if you have not found the remote control it should be around the sitting area.";
+        freeStyleString = "Woohoo, now the robot has been fixed, now you are in freestyle mode. Use the joystick on the controller to move the robot";
+        remoteFounf = "Well done, you have found the remote control, now you need to find the RED manual. Press the trigger on the help button to open and close this window.";
     }
 
     public IEnumerator DisplayTextOverTime(string currentString)
     {
         uiText.text = "";
         string text = currentString;
-        //string text = this.CurrentString();
+        if(UITextObject.activeInHierarchy == false)
+        {
+            UITextObject.SetActive(true);
+        }
+        
         Debug.Log("The text in the text variable is " +text);
-        textOngoing = true;
+       
         for (int i = 0; i < text.Length; i++)
         {
+            Debug.Log("Text length " + text.Length);
+            Debug.Log(text[i]);
             uiText.text += text[i] ;
             yield return new WaitForSeconds(delay);
         }
-        textOngoing = false;
+     
     }
         
     public string CurrentString()
@@ -70,22 +81,19 @@ public class TextController : MonoBehaviour
         }
         else if (gameManager.InStageOne())
         {
-
             if (gameManager.robotAgent.robot.isStopped == false)
             {
-                
                 returnString = startText;
             }
-           
         }
         else if (gameManager.InStageTwo())
         {
             Debug.Log( "in stage 2");
             returnString = remoteFounf;
-        }else if(/*gameManager.InStageThree()*/ GameManager.InStageThree())
+        }else if( gameManager.InStageFour())
         {
             Debug.Log("in stage 3");
-            returnString = "Woohoo, now the robot has been fixed, now you are in freestyle mode. Use the joysstick on the controller to move the robot";
+            returnString = freeStyleString;
         }
         else
         {

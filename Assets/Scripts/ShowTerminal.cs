@@ -12,7 +12,7 @@ public class ShowTerminal : MonoBehaviour
 
     string currentSceneName;
 
-    bool terminalDisplayed;
+  //  bool terminalDisplayed;
   
 
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class ShowTerminal : MonoBehaviour
              terminal.SetActive(false);
                     robot = GameObject.FindObjectOfType<Robot>();
         
-                    terminalDisplayed = false;
+                    //terminalDisplayed = false;
                     DisplayTerminal();
         }
        

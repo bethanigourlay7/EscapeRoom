@@ -73,6 +73,7 @@ MonoBehaviour:
         m_CallState: 2
   btnRight: {fileID: 0}
   btnLeft: {fileID: 0}
+  targetInputField: {fileID: 0}
   speed: 0
 --- !u!65 &2404005340664060637
 BoxCollider:
@@ -213,7 +214,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UITextObject: {fileID: 0}
+  terminalButton: {fileID: 0}
   terminalManager: {fileID: 0}
+  terminalUI: {fileID: 0}
+  manualButton: {fileID: 0}
+  manual: {fileID: 0}
+  book: {fileID: 0}
+  tutorialButton: {fileID: 0}
+  helpButton: {fileID: 0}
+  Menu: {fileID: 0}
+  wandPointerView: {fileID: 0}
+  textController: {fileID: 0}
 --- !u!114 &2404005340664060628
 MonoBehaviour:
   m_ObjectHideFlags: 0

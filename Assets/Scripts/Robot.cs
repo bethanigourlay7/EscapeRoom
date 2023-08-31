@@ -27,6 +27,7 @@ public class Robot : MonoBehaviour
     public bool isTrapped = false;
 
    
+   
 
     public string beepBoop = "boop beep beep";
 
@@ -38,8 +39,7 @@ public class Robot : MonoBehaviour
     public String eyesight { get;  set; }
 
     // boolean to check if robot has been fixed
-    public bool robotFixed = false;
-
+    public bool robotFixed ;
 
     public bool terminalScene = false;
 
@@ -50,6 +50,8 @@ public class Robot : MonoBehaviour
     {
         robot = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        robotFixed = false;
         robotSpeedData = new Dictionary<int, double>();
         isTrapped = false;
 
@@ -62,12 +64,22 @@ public class Robot : MonoBehaviour
 
         currentSceneName = SceneManager.GetActiveScene().name;
 
+     
 
     }
 
     void Update()
     {
 
+        if(robotFixed == true)
+        {
+            Freestyle();
+        }
+        else
+        {
+            CheckForRandomMovement();
+        }
+/*
         if (currentSceneName != "TerminalCheck")
         {
             if (GameManager.InStageThree() == true)
@@ -88,8 +100,7 @@ public class Robot : MonoBehaviour
         {
             return;
         }
-    
-       
+*/
 
 
         //Freestyle();
