@@ -13696,10 +13696,14 @@ PrefabInstance:
       propertyPath: delay
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 0.03
 =======
       value: 0.1
 >>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
+=======
+      value: 0.1
+>>>>>>> parent of 11d5879 (Copy - copy)
 =======
       value: 0.1
 >>>>>>> parent of 11d5879 (Copy - copy)
@@ -14217,10 +14221,14 @@ PrefabInstance:
       propertyPath: m_IsActive
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 1
 =======
       value: 0
 >>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
+=======
+      value: 0
+>>>>>>> parent of 11d5879 (Copy - copy)
 =======
       value: 0
 >>>>>>> parent of 11d5879 (Copy - copy)
@@ -14239,12 +14247,15 @@ PrefabInstance:
       objectReference: {fileID: 464407834}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 6343244783627563709, guid: 33d1a9e656b125047959a1618ff6d4e0, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -267
       objectReference: {fileID: 0}
 =======
 >>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
+=======
+>>>>>>> parent of 11d5879 (Copy - copy)
 =======
 >>>>>>> parent of 11d5879 (Copy - copy)
     - target: {fileID: 6343244783737252584, guid: 33d1a9e656b125047959a1618ff6d4e0, type: 3}
@@ -14260,10 +14271,14 @@ PrefabInstance:
       value: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       objectReference: {fileID: 21300000, guid: a50c2c4eff51e2b4c92a745a1255f405, type: 3}
 =======
       objectReference: {fileID: 21300000, guid: 7f39617ca904ca241bf6e44455fe9883, type: 3}
 >>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
+=======
+      objectReference: {fileID: 21300000, guid: 7f39617ca904ca241bf6e44455fe9883, type: 3}
+>>>>>>> parent of 11d5879 (Copy - copy)
 =======
       objectReference: {fileID: 21300000, guid: 7f39617ca904ca241bf6e44455fe9883, type: 3}
 >>>>>>> parent of 11d5879 (Copy - copy)
@@ -14276,10 +14291,14 @@ PrefabInstance:
       value: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       objectReference: {fileID: 21300000, guid: 73d9b690d4e5bc04982272494c3c9ec7, type: 3}
 =======
       objectReference: {fileID: 21300000, guid: 7cdc0851da2f5d648b15060e799d1c14, type: 3}
 >>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
+=======
+      objectReference: {fileID: 21300000, guid: 7cdc0851da2f5d648b15060e799d1c14, type: 3}
+>>>>>>> parent of 11d5879 (Copy - copy)
 =======
       objectReference: {fileID: 21300000, guid: 7cdc0851da2f5d648b15060e799d1c14, type: 3}
 >>>>>>> parent of 11d5879 (Copy - copy)
@@ -14297,12 +14316,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 6343244784117690123, guid: 33d1a9e656b125047959a1618ff6d4e0, type: 3}
       propertyPath: ControledBook
       value: 
       objectReference: {fileID: 918423332769561337}
 =======
 >>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
+=======
+>>>>>>> parent of 11d5879 (Copy - copy)
 =======
 >>>>>>> parent of 11d5879 (Copy - copy)
     m_RemovedComponents: []

@@ -169,6 +169,7 @@ public class GameManager : MonoBehaviour
             // terminalManager.SetActive(false);
             Debug.Log("at tutorial");
 
+<<<<<<< HEAD
             StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
         }
     }
@@ -183,6 +184,8 @@ public class GameManager : MonoBehaviour
             // terminalManager.SetActive(false);
             Debug.Log("at tutorial");
 
+=======
+>>>>>>> parent of 11d5879 (Copy - copy)
             StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
         }
     }
