@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     /*
      * Button to open and close the terminal window, only available from stage 2 onwards
      */
-   // public GameObject terminalButton;
+    public GameObject terminalButton;
     /*
      * Button to open and close the manual, available throughout the whole game
      */
@@ -49,16 +49,12 @@ public class GameManager : MonoBehaviour
 
     private TextController textController;
 
-    // object manager script to manipulate settings in game objects 
-
-    private ObjectManager objectManager;
-
     // variables to show what stage the game is in
     public bool atTutorial = true;
-    public bool atStageOne = false;
-    public bool atStageTwo = false;
-    public bool atStageThree = false; 
-    public bool atStageFour = false;
+    private bool atStageOne = false;
+    private bool atStageTwo = false;
+   [SerializeField] public static bool atStageThree = false;
+
 
     public bool remoteControlFound = false;
     public bool manualFound = false;
@@ -73,7 +69,6 @@ public class GameManager : MonoBehaviour
        
         UITextDisplay.SetActive(true);
         textController = UITextDisplay.GetComponent<TextController>();
-        objectManager = GetComponent<ObjectManager>();
         //UIText.SetActive(false);
         //stageOneInput = inputManager.GetComponent<StageOneInput>();
         
@@ -119,7 +114,7 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("In update at tutorial is " + atTutorial);
        // stage 1 will start as soon as start is pressed in the menu and
-        if (atStageOne == false && atStageTwo == false && atStageFour == false && atTutorial == false)
+        if (atStageOne == false && atStageTwo == false && atStageThree == false && atTutorial == false)
         {
             atStageOne = true;
             StageOne();
@@ -141,7 +136,7 @@ public class GameManager : MonoBehaviour
                         atStageTwo = true;
                         atStageOne = false;
            
-                          // StageTwo();
+                           StageTwo();
             
                     }
            /* if (robotAgent.robotFixed == true)
@@ -149,26 +144,17 @@ public class GameManager : MonoBehaviour
                // Debug.Log("robot is fixed");
             }*/
         }
-        if(remoteControlFound && manualFound && atStageThree == false/*&&SceneChangeButton.activeInHierarchy == false*/)
+        if(remoteControlFound && manualFound &&SceneChangeButton.activeInHierarchy == false)
         {
-            atStageThree = true;
             StopAllCoroutines();
-            StartCoroutine(textController.DisplayTextOverTime("Now you can access the robots terminal, click the manual button to find instructions on how to fix the terminal"));
-            //SceneChangeButton.SetActive(true);
+            StartCoroutine(textController.DisplayTextOverTime("Now you can access the robots terminal, click next stage to move on"));
+           
+            SceneChangeButton.SetActive(true);
         }
-        // after the robot is fixed in the terminal, manually trigger Stage Three where the robot can be controlled
-        if(atStageFour == true && robotAgent.robotFixed == false)
-        {
-            robotAgent.robotFixed = true;
-            Debug.Log("Robot is fixed = " + robotAgent.robotFixed);
-            atStageFour =true;
-            DisplayText();
-        }
-
-        /*if(atStageTwo == true && robotAgent.robotFixed == true)
+        if(atStageTwo == true && robotAgent.robotFixed == true)
         {
             atStageThree = true;
-        }*/
+        }
     }
 
     /*
@@ -177,12 +163,12 @@ public class GameManager : MonoBehaviour
     public void Tutorial()
     {
         atTutorial = true;
-        objectManager.UnfreezeBookCase();
         if (atTutorial == true)
         {
             UITextObject.SetActive(true);
             // terminalManager.SetActive(false);
             Debug.Log("at tutorial");
+
             StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
         }
     }
@@ -222,40 +208,25 @@ public class GameManager : MonoBehaviour
         robotObject.SetActive(true);
         environment.SetActive(true);
         // ensure terminal button is not available
-      //  terminalButton.SetActive(false);
-    }
-
-    /*
-     * Occurs once remote and manual have been found
-     */
-    public void ShiftToManual()
-    {
-        UITextObject.SetActive(false);
-        robotObject.SetActive(false);
-        book.SetActive(true);
-    }
-
-    public void freeStyleMode()
-    {
-        
+        terminalButton.SetActive(false);
     }
 
     /**
      * Occurs after robot is trapped
      */
-  /*  private void StageTwo()
+    private void StageTwo()
     {
         // add a text here indicating next stage of game
 
         DisplayText();
        //     terminalManager.SetActive(true);
              terminalButton.SetActive(true);
-        *//*environment.SetActive(false);
+        /*environment.SetActive(false);
         robotObject.SetActive(false);
-        UITextObject.SetActive(false);*//*
-    }*/
+        UITextObject.SetActive(false);*/
+    }
 
-    private void StageFour()
+    private void StageThree()
     {
         DisplayText();
     }
@@ -264,6 +235,7 @@ public class GameManager : MonoBehaviour
      * Uses a coroutine to display text indepenedent of frames, stops any previous coroutines from previous text displays
      *
      */
+
     private void DisplayText()
     {
         StopAllCoroutines();
@@ -325,11 +297,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
     /**
-    Getter for at stage three, used in text controller for current string
+ *     Getter for at stage three
  * */
-    public bool InStageFour()
+
+    public static bool InStageThree()
     {
-        if (atStageFour == true)
+        if (atStageThree == true)
         {
             return true;
         }
@@ -338,7 +311,4 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
-
-
-
 }

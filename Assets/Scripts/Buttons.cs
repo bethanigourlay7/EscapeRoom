@@ -37,6 +37,7 @@ public class Buttons : MonoBehaviour
 
     GameManager gameManager;
 
+  
     TextController textController;
 
     ShowTerminal showTerminal;
@@ -47,15 +48,8 @@ public class Buttons : MonoBehaviour
     {
         // showTerminal = FindAnyObjectByType<ShowTerminal>();
 
-        textController = UITextObject.GetComponentInChildren<TextController>();
-       // textController = FindObjectOfType<TextController>();
-        if(textController != null)
-        {
-            Debug.Log("Text controller present");
-        }else
-        {
-            Debug.Log("Text controller not present");
-        }
+
+        textController = FindObjectOfType<TextController>();
         //terminalManager.SetActive(true);
         terminalManagerScript = FindObjectOfType<TerminalManager>();
 
@@ -83,7 +77,7 @@ public class Buttons : MonoBehaviour
         gameManager.atTutorial = false;
         tutorialButton.SetActive(false);
 
-        //HelpButton();
+        HelpButton();
     }
 
 
@@ -108,11 +102,8 @@ public class Buttons : MonoBehaviour
 
     public void QuitGame()
     {
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif      
+        Debug.Log("QUIT");
+        Application.Quit();
     }
 
     // displays and hides UI text with information to direct user
@@ -133,14 +124,8 @@ public class Buttons : MonoBehaviour
 
     public void RemoteControl()
     {
-        
         gameManager.remoteControlFound = true;
         Debug.Log("Remote found");
-        if (gameManager.manualFound == false)
-        {
-            StopAllCoroutines();
-            StartCoroutine(textController.DisplayTextOverTime(textController.remoteFounf));
-        }
     }
 
 
@@ -202,13 +187,9 @@ public class Buttons : MonoBehaviour
            
             Debug.Log("Clicked find manual button");
           gameManager.manualFound = true;
-            //UITextObject.SetActive(true);
-            if(gameManager.remoteControlFound == false)
-            {
-                StopAllCoroutines();
-                StartCoroutine(textController.DisplayTextOverTime(textController.manualFound));
-            }
-            
+            UITextObject.SetActive(true);
+            StopAllCoroutines();
+            StartCoroutine(textController.DisplayTextOverTime(textController.manualFound));
         }
 
     }
@@ -294,24 +275,18 @@ public class Buttons : MonoBehaviour
         }
     }
 
-
-    public void SwapToManual()
+    public void LoadTerminalScene()
     {
-        gameManager.ShiftToManual();
-    
+        gameManager.robotAgent.terminalScene = true;
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);    
     }
 
-    public void FixRobotLoadFreeStyle()
+    public void LoadFreeStyle()
     {
         // variable to pass through
         PlayerPrefs.SetInt("Freestyle", 1);
-        
-        gameManager.atStageFour = true;
-        gameManager.atStageOne = false;
-        gameManager.atStageTwo = false; 
-       
-     
-       
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
    
