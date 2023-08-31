@@ -148,8 +148,6 @@ public class InputManager : MonoBehaviour
 
             // When book is present 
 
-
-
             // Handle button input (One and Two)
             if (wandDevice.One.wasPressedThisFrame)
             {

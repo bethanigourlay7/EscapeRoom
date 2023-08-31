@@ -26,6 +26,8 @@ public class Buttons : MonoBehaviour
 
     public GameObject helpButton;
 
+    public GameObject menu;
+
     // Wand pointer view object needs to be disabled when terminal is opened so mouse can be used
     public GameObject wandPointerView;
 
@@ -60,11 +62,9 @@ public class Buttons : MonoBehaviour
 
     public void StartTutorial()
     {
-        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         gameManager.atTutorial = false;
         Debug.Log("Start tutorial button");
-
     }
 
 
@@ -82,7 +82,10 @@ public class Buttons : MonoBehaviour
     */
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    
+        gameManager.Tutorial();
+
     }
 
     public void QuitGame()
@@ -134,12 +137,8 @@ public class Buttons : MonoBehaviour
            
         }
     }
-
-  
     public void OpenCloseTerminal()
     {
-
-
         Debug.Log("Clicking terminal manager button");
         if (terminalManager.activeInHierarchy ==true)
         {
@@ -161,7 +160,9 @@ public class Buttons : MonoBehaviour
         }
     }
 
-
+    /*
+     * Not in use, was used to activate the manual button when the manual was found in the scene
+     */
     public void FindManualButton()
     {
         if(manualButton.activeInHierarchy == false)
@@ -182,6 +183,10 @@ public class Buttons : MonoBehaviour
         Debug.Log("Test button");
     }
 
+    /*
+     * 
+     * Activates and deactivates the manual, not in use but was used to 
+     */
     public void ManualButton()
     {
         Debug.Log("Manual button pressed");

@@ -83,19 +83,21 @@ public class GameManager : MonoBehaviour
             Debug.Log("Robot does not exist");
         }
         // tutorial text
-        atTutorial = true;
+       /* atTutorial = true;
         if (atTutorial == true)
         {
            // terminalManager.SetActive(false);
             Debug.Log("at tutorial");
           
             StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
-        }
+        }*/
     }
 
     // Update is called once per frame
     private void Update()
     {
+
+        
         /*
         if(remoteControlFound != true && terminalManager.activeInHierarchy == true)
         {
@@ -148,6 +150,20 @@ public class GameManager : MonoBehaviour
         if(atStageTwo == true && robotAgent.robotFixed == true)
         {
             atStageThree = true;
+        }
+    }
+
+
+    public void Tutorial()
+    {
+        atTutorial = true;
+        if (atTutorial == true)
+        {
+           
+            // terminalManager.SetActive(false);
+            Debug.Log("at tutorial");
+
+            StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
         }
     }
 
