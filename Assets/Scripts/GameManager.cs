@@ -88,7 +88,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("Robot does not exist");
         }
         // tutorial text
+<<<<<<< HEAD
         /*atTutorial = true;
+=======
+       /* atTutorial = true;
+>>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
         if (atTutorial == true)
         {
            // terminalManager.SetActive(false);
@@ -101,6 +105,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+        
         /*
         if(remoteControlFound != true && terminalManager.activeInHierarchy == true)
         {
@@ -177,6 +183,20 @@ public class GameManager : MonoBehaviour
             UITextObject.SetActive(true);
             // terminalManager.SetActive(false);
             Debug.Log("at tutorial");
+            StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
+        }
+    }
+
+
+    public void Tutorial()
+    {
+        atTutorial = true;
+        if (atTutorial == true)
+        {
+           
+            // terminalManager.SetActive(false);
+            Debug.Log("at tutorial");
+
             StartCoroutine(textController.DisplayTextOverTime(textController.tutorialString));
         }
     }

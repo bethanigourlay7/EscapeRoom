@@ -26,7 +26,11 @@ public class Buttons : MonoBehaviour
 
     public GameObject helpButton;
 
+<<<<<<< HEAD
     public GameObject Menu;
+=======
+    public GameObject menu;
+>>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
 
     // Wand pointer view object needs to be disabled when terminal is opened so mouse can be used
     public GameObject wandPointerView;
@@ -68,11 +72,9 @@ public class Buttons : MonoBehaviour
 
     public void StartTutorial()
     {
-        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         gameManager.atTutorial = false;
         Debug.Log("Start tutorial button");
-
     }
 
 
@@ -90,11 +92,18 @@ public class Buttons : MonoBehaviour
     */
     public void PlayGame()
     {
+<<<<<<< HEAD
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         helpButton.SetActive(true);
         tutorialButton.SetActive(true);
         gameManager.Tutorial();
         Menu.SetActive(false);
+=======
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    
+        gameManager.Tutorial();
+
+>>>>>>> eb88d88fb7d5cbef70efe555234e99f622aa7cbd
     }
 
     public void QuitGame()
