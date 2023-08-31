@@ -1,6 +1,10 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,38 +14,57 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] public GameObject carriedObject;
     public Book book;
+    public GameObject bookObject;
     public bool bookOpen;
     GameObject cube;
     GameObject bookUI;
+
+    // trying to use sdk input example 
+    [SerializeField]
+    private UnityEvent _onTriggerPressed;
     // Update is called once per frame
 
-    // materials 
+    // Game objects that wand will interact with 
+
+
+
+    public GameObject btnRight;
+   public  GameObject btnLeft;
+
+     // materials 
     Material mat1;
     Material mat2;
     Material mat3;
 
+    public InputField targetInputField;
+
     public int speed;
-   
+
+    string currentSceneName;
+
+    // checking which scene 
+
+    /*    private void Start()
+        {
+            book = FindObjectOfType<Book>();
+        }
+    */
+
+    private void Start()
+    {
+        currentSceneName = SceneManager.GetActiveScene().name;
+    }
     void Update()
     {
 
-        if(bookOpen == true)
+        //BookActions();
+       
+
+            if (TiltFive.Input.TryGetTrigger(out var triggerValue))
         {
-
-            BookActions();
-
-            return;
-        }
-
-        
-
-        if (TiltFive.Input.TryGetTrigger(out var triggerValue))
-        {
-          
             if (triggerValue < 0.5f && carriedObject != null)
             {
                 DropObject();
-
             }
         }
   
@@ -62,19 +85,22 @@ public class InputManager : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("on trigger stay method");
+     
         if (TiltFive.Input.TryGetTrigger(out var triggerValue))
         {
-            Debug.Log("trigger value " + (float)triggerValue);
+      
             if (triggerValue > 0.5f && carriedObject == null)
             {
                 PickUpObject(other.gameObject);
+                ButtonPress(other.gameObject);
+            
             }
            
 
         }
     }
 
+   
 
     private void PickUpObject(GameObject obj)
     {
@@ -96,6 +122,17 @@ public class InputManager : MonoBehaviour
         carriedObject = null;
     }
 
+    private void ButtonPress(GameObject button)
+    {
+        if (button.CompareTag("Button"))
+        {
+            Debug.Log("button pressed");
+        }
+    }
+
+
+    
+
     public void BookActions()
     {
         // with new input system 
@@ -110,8 +147,6 @@ public class InputManager : MonoBehaviour
             }
 
             // When book is present 
-
-
 
             // Handle button input (One and Two)
             if (wandDevice.One.wasPressedThisFrame)
@@ -131,5 +166,30 @@ public class InputManager : MonoBehaviour
             cube.transform.Translate(wandDevice.Stick.ReadValue().x * Time.deltaTime * speed, 0.0f, wandDevice.Stick.ReadValue().y * Time.deltaTime * speed);
         }
 
+    }
+
+    /// <summary>
+    /// On clicking the UI.
+    /// </summary>
+    public void OnClick()
+    {
+        // Check that there's an event system present in the scene.
+        if (EventSystem.current != null)
+        {
+            // Create a pointer event data and execute on the current event system.
+            PointerEventData data = new PointerEventData(EventSystem.current);
+
+            data.selectedObject = EventSystem.current.currentSelectedGameObject;
+
+            ExecuteEvents.Execute(data.selectedObject, data, ExecuteEvents.submitHandler);
+        }
+    }
+
+    // to focus on the input field without the mouse
+    public void FocusInputField()
+    {
+        EventSystem.current.SetSelectedGameObject(targetInputField.gameObject, null);
+        // Simulate a click to open the keyboard on touch devices
+        targetInputField.OnPointerClick(new PointerEventData(EventSystem.current)); 
     }
 }

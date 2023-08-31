@@ -3,13 +3,14 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 public class Robot : MonoBehaviour
 {
     public NavMeshAgent robot;
     public float range;
     private Animator animator;
     private Dictionary<int, double> robotSpeedData;
-    public bool skipTrapping5Secs = false;
+    public bool skipTrapping10Secs = false;
     public bool testRobotSpeed = false;
     private string csvFile = "robotSpeedData.csv";
     private bool fileCreated;
@@ -23,44 +24,83 @@ public class Robot : MonoBehaviour
     private int trappedCount;
     private int trappedOn;
 
-    public bool isTrapped;
+    public bool isTrapped = false;
+
+   
+
+    public string beepBoop = "boop beep beep";
 
     // diagnostic variables, for use in the the Interpreter script when robot is being fixed
     public String robotModel { get;  set; }
     public String softwareVersion { get; set; }
-    public String capacitorRatingFull { get;  set; }
-    public String capacitorRating { get; set; }
-    public String infraredSensitivity { get;  set; }
+    public String maxEnergyLevel { get;  set; }
+    public String energyLevel { get; set; }
+    public String eyesight { get;  set; }
 
     // boolean to check if robot has been fixed
-    public bool robotFixed = false; 
+    public bool robotFixed = false;
 
+
+    public bool terminalScene = false;
+
+    // to check which scene is currently active
+    string currentSceneName;
 
     void Start()
     {
         robot = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         robotSpeedData = new Dictionary<int, double>();
+        isTrapped = false;
 
         // set robot diagnostic variables 
         robotModel = "123456";
         softwareVersion = "3.1.2";
-        capacitorRatingFull = "3000";
-        infraredSensitivity = "400";
+        maxEnergyLevel = "10";
+        energyLevel = "10";
+        eyesight = "3";
 
-       
+        currentSceneName = SceneManager.GetActiveScene().name;
+
+
     }
 
     void Update()
     {
-        CheckForRandomMovement();
+
+        if (currentSceneName != "TerminalCheck")
+        {
+            if (GameManager.InStageThree() == true)
+            {
+                Freestyle();
+            }
+            else if (terminalScene)
+            {
+                return;
+            }
+            else
+            {
+                //Freestyle();
+                CheckForRandomMovement();
+            }
+            
+        }else
+        {
+            return;
+        }
+    
+       
+
+
+        //Freestyle();
+
         if (testRobotSpeed)
         {
             SpeedTest();
         }
-        if (skipTrapping5Secs == true)
+        if (skipTrapping10Secs == true)
         {
-            SkipTrap();
+            Trap();
         }
       
     }
@@ -84,8 +124,10 @@ public class Robot : MonoBehaviour
         }
     }
 
+
     void SpeedTest()
     {
+        Debug.Log("Speed test");
         vMagTotal += robot.velocity.magnitude;
         numOfFrames++;
 
@@ -95,7 +137,7 @@ public class Robot : MonoBehaviour
             avgVMag = vMagTotal / numOfFrames;
             vMagTotal = 0;
             numOfFrames = 0;
-
+            Debug.Log("seconds " + seconds);
             robotSpeedData.Add(seconds, avgVMag);
 
             if (avgVMag == 0)
@@ -118,13 +160,31 @@ public class Robot : MonoBehaviour
 
             if (seconds > 20 && !fileCreated)
             {
+                Debug.Log("creating file");
                 CreateCSVFile();
                 LogData(robotSpeedData);
                 fileCreated = true;
             }
         }
     }
-
+    /*
+     * Freestyle mode
+     */
+    public void Freestyle()
+    {
+        if (TiltFive.Input.TryGetStickTilt(out var joyStickValue))
+        {
+            animator.SetBool("Walk_Anim", true);
+            robot.transform.Translate(new Vector3(joyStickValue.x, 0, joyStickValue.y) * 4 * Time.deltaTime);
+            Debug.Log("moving");
+            if (robot.velocity.magnitude*100 == 0)
+            {
+                
+                animator.SetBool("Walk_Anim", false);
+                Debug.Log("not moving. vmag is " + robot.velocity*100);
+            }
+        }
+    }
     void CreateCSVFile()
     {
         string headerRow = "Second,VMagAvg\n";
@@ -146,7 +206,7 @@ public class Robot : MonoBehaviour
         File.AppendAllText(filePath, logMessage);
     }
 
-    void SkipTrap()
+    void Trap()
     {
         if ((seconds + 1) == (int)Time.unscaledTimeAsDouble)
         {
@@ -169,7 +229,7 @@ public class Robot : MonoBehaviour
                     trappedCount++;
                     if (trappedCount > 3)
                     {
-                        isTrapped = true;
+                       // isTrapped = true;
                         robot.isStopped = true;
                         
                     }
@@ -184,9 +244,12 @@ public class Robot : MonoBehaviour
             }
         }
 
-        if (robot.isStopped == false && seconds > 5 && skipTrapping5Secs == true)
+        if (robot.isStopped == false && seconds > 10 && skipTrapping10Secs == true)
         {
             robot.isStopped = true;
+            isTrapped = true;
+            animator.SetBool("Walk_Anim", false);
+
         }
     }
 

@@ -17,12 +17,24 @@ public class TerminalManager : MonoBehaviour
     // reference to Interpreter for access to list
     Interpreter interpreter;
 
+    // extra interpreter option for easy level
+    public bool easyLevel = false;
+
     private void Start()
     {
 
         interpreter = GetComponent<Interpreter>();
 
-
+        if (PlayerPrefs.GetInt("EasyMode", 0) == 1)
+        {
+          
+            easyLevel = true;
+        }
+        else if(PlayerPrefs.GetInt("EasyMode", 0) == 0)
+        {
+           
+            easyLevel = false;
+        }
     }
 
     private void OnGUI()
@@ -38,7 +50,17 @@ public class TerminalManager : MonoBehaviour
             // Instantiate gameobject with a directory prefix
             AddDirectoryLine(userInput);
 
-            int lines = AddInterpreterLines(interpreter.Interpret(userInput));
+            int lines;
+            // added in a reference to the easy level interpreter if hard
+            if(easyLevel == false)
+            {
+                lines = AddInterpreterLines(interpreter.Interpret(userInput));
+            } 
+            else
+            {
+                lines = AddInterpreterLines(interpreter.InterpretEasy(userInput));
+            }
+            
 
             // scroll to bottom of the scrollrect
             ScrollToBottom(lines);

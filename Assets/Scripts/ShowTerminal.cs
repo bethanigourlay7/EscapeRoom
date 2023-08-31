@@ -2,27 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShowTerminal : MonoBehaviour
 {
     Robot robot;
     [SerializeField] private GameObject terminal;
     [SerializeField] private GameObject environment;
-    private GameManager gameManager;
 
-    bool robotMalfunctioning;
+    string currentSceneName;
+
     bool terminalDisplayed;
   
 
     // Start is called before the first frame update
     void Start()
     {
-        terminal.SetActive(false);
-        robot = GameObject.FindObjectOfType<Robot>();
-        terminalDisplayed = false;
+        currentSceneName = SceneManager.GetActiveScene().name;
+        if(currentSceneName == "Level1")
+        {
+             terminal.SetActive(false);
+                    robot = GameObject.FindObjectOfType<Robot>();
+        
+                    terminalDisplayed = false;
+                    DisplayTerminal();
+        }
+       
 
     }
-
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -33,18 +41,14 @@ public class ShowTerminal : MonoBehaviour
         }
        
     }
-
+    */
     /**
      * Displays terminal and hides environment within scene
      */
-    void DisplayTerminal()
+    public void DisplayTerminal()
     {
             terminal.SetActive(true);
-            environment.SetActive(false);
-            Debug.Log("Robot is trapped. Ready to display terminal.");
-           
-            terminalDisplayed = true;
- 
+       
     }
 
 }
